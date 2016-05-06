@@ -7,6 +7,10 @@
         <value>true</value>
         <description>True to create a sample collection when Solr is deployed</description>
         <display-name>Create sample collection</display-name>
+        <value-attributes>
+            <type>boolean</type>
+            <overridable>false</overridable>
+        </value-attributes>
     </property>
 
     <property>

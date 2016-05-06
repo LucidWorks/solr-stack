@@ -7,7 +7,7 @@ def setup_solr():
     import params
 
     Directory([params.solr_config_dir, params.solr_config_log_dir, params.solr_config_service_log_dir,
-               params.solr_config_pid_dir, params.solr_config_conf_dir],
+               params.solr_config_pid_dir, params.solr_config_conf_dir, params.solr_config_data_dir],
               mode=0755,
               cd_access='a',
               owner=params.solr_config_user,
@@ -22,5 +22,10 @@ def setup_solr():
 
     File(format("{solr_config_conf_dir}/log4j.properties"),
          content=Template("log4j.properties.j2"),
+         owner=params.solr_config_user
+         )
+
+    File(format("{solr_config_data_dir}/solr.xml"),
+         content=Template("solr.xml.j2"),
          owner=params.solr_config_user
          )

@@ -7,6 +7,10 @@
         <value>true</value>
         <description>Enable support for Solr on HDFS</description>
         <display-name>Enable support for Solr on HDFS</display-name>
+        <value-attributes>
+            <type>boolean</type>
+            <overridable>false</overridable>
+        </value-attributes>
     </property>
 
     <property>

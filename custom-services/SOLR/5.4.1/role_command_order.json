@@ -1,7 +1,15 @@
 {
-  "general_deps" : {
-    "_comment" : "dependencies for SOLR ",
-    "SOLR_MASTER-START" : ["ZOOKEEPER_SERVER-START", "NAMENODE-START", "DATANODE-START", "SECONDARY_NAMENODE-START"],
-    "SOLR_SERVICE_CHECK-SERVICE_CHECK" : ["SOLR_MASTER-START"]
+  "general_deps": {
+    "_comment": "Dependencies for Solr service",
+    "SOLR_MASTER-START": [
+      "ZOOKEEPER_SERVER-START",
+      "NAMENODE-START",
+      "DATANODE-START",
+      "SECONDARY_NAMENODE-START",
+      "HDFS_SERVICE_CHECK-SERVICE_CHECK"
+    ],
+    "SOLR_SERVICE_CHECK-SERVICE_CHECK": [
+      "SOLR_MASTER-START"
+    ]
   }
 }

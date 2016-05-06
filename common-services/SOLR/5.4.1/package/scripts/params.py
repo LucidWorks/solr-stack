@@ -37,6 +37,7 @@ solr_config_log_dir = map_solr_config['solr.config.log.dir']
 solr_config_service_log_dir = map_solr_config['solr.config.service.log.dir']
 solr_config_service_log_file = format("{solr_config_service_log_dir}/solr-service.log")
 solr_config_conf_dir = map_solr_config['solr.config.conf.dir']
+solr_config_data_dir = map_solr_config['solr.config.data.dir']
 
 solr_config_dir = '/usr/lib/ambari-logsearch-solr'
 solr_config_bin_dir = solr_config_dir + '/bin'
@@ -45,14 +46,14 @@ solr_config_pid_file = status_params.solr_config_pid_file
 
 # solr cloud
 cloud_scripts = format('{solr_config_dir}/server/scripts/cloud-scripts')
-map_solr_cloud = config['configurations']['solr-cloud'];
+map_solr_cloud = config['configurations']['solr-cloud']
 solr_cloud_mode = map_solr_cloud['solr.cloud.enable']
 solr_cloud_zk_directory = map_solr_cloud['solr.cloud.zk.directory']
 
 # collection sample
-map_example_collection = config['configurations']['example-collection'];
+map_example_collection = config['configurations']['example-collection']
+solr_collection_sample_create = bool(map_example_collection['solr.collection.sample.create'])
 solr_collection_name = map_example_collection['solr.collection.sample.name']
-solr_collection_sample_create = map_example_collection['solr.collection.sample.create']
 solr_collection_config_dir = map_example_collection['solr.collection.sample.config.directory']
 solr_collection_shards = str(map_example_collection['solr.collection.sample.shards'])
 solr_collection_replicas = str(map_example_collection['solr.collection.sample.replicas'])
@@ -84,7 +85,7 @@ HdfsResource = functools.partial(
 )
 
 # solr ssl
-map_solr_ssl = config['configurations']['solr-ssl'];
+map_solr_ssl = config['configurations']['solr-ssl']
 solr_ssl_enable = bool(map_solr_ssl['solr.ssl.enable'])
 solr_ssl_prefix = "#" if not solr_ssl_enable else ""
 solr_ssl_key_store = map_solr_ssl['solr.ssl.key.store']

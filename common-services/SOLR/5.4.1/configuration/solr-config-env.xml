@@ -33,6 +33,16 @@
     </property>
 
     <property>
+        <name>solr.config.data.dir</name>
+        <value>/etc/solr/data_dir</value>
+        <description>Solr data directory</description>
+        <value-attributes>
+            <type>directory</type>
+        </value-attributes>
+        <display-name>Solr server directory</display-name>
+    </property>
+
+    <property>
         <name>solr.config.pid.dir</name>
         <value>/var/run/solr</value>
         <description>Solr PID directory</description>

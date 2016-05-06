@@ -7,6 +7,10 @@
         <value>false</value>
         <description>Enable SSL support</description>
         <display-name>Enable SSL support</display-name>
+        <value-attributes>
+            <type>boolean</type>
+            <overridable>false</overridable>
+        </value-attributes>
     </property>
 
     <property>
@@ -44,6 +48,10 @@
         <value>false</value>
         <description>Need client authentication</description>
         <display-name>Need client authentication</display-name>
+        <value-attributes>
+            <type>boolean</type>
+            <overridable>false</overridable>
+        </value-attributes>
     </property>
 
     <property>
@@ -51,5 +59,9 @@
         <value>false</value>
         <description>Want client authentication</description>
         <display-name>Want client authentication</display-name>
+        <value-attributes>
+            <type>boolean</type>
+            <overridable>false</overridable>
+        </value-attributes>
     </property>
 </configuration>

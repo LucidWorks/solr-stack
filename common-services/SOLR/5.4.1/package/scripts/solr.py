@@ -13,7 +13,6 @@ class Solr(Script):
     def install(self, env):
         import params
         env.set_params(params)
-        Logger.info("installing solr")
         self.install_packages(env)
 
     def configure(self, env):

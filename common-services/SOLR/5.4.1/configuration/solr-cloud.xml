@@ -7,6 +7,10 @@
         <value>true</value>
         <description>Whether Solr should be started in Cloud mode</description>
         <display-name>Enable Solr Cloud mode</display-name>
+        <value-attributes>
+            <type>boolean</type>
+            <overridable>false</overridable>
+        </value-attributes>
     </property>
 
     <property>
