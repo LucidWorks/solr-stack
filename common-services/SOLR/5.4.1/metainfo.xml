@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<metainfo>
+    <schemaVersion>2.0</schemaVersion>
+    <services>
+        <service>
+            <name>SOLR</name>
+            <displayName>Solr</displayName>
+            <comment>Solr is a search platform from the Apache Lucene project.
+                Its major features include full-text search, hit highlighting,
+                faceted search, dynamic clustering, database integration, and
+                rich document (e.g., Word, PDF) handling.
+            </comment>
+            <version>5.4.1</version>
+
+            <components>
+                <component>
+                    <name>SOLR_MASTER</name>
+                    <displayName>Solr</displayName>
+                    <category>MASTER</category>
+                    <cardinality>1+</cardinality>
+                    <versionAdvertised>true</versionAdvertised>
+                    <commandScript>
+                        <script>scripts/solr.py</script>
+                        <scriptType>PYTHON</scriptType>
+                        <timeout>5000</timeout>
+                    </commandScript>
+                </component>
+            </components>
+
+            <osSpecifics>
+                <osSpecific>
+                    <osFamily>redhat7,amazon2015,redhat6,suse11,suse12</osFamily>
+                    <packages>
+                        <package>
+                            <name>ambari-logsearch-solr</name>
+                            <skipUpgrade>true</skipUpgrade>
+                        </package>
+                    </packages>
+                </osSpecific>
+                <osSpecific>
+                    <osFamily>debian7,ubuntu12,ubuntu14</osFamily>
+                    <packages>
+                        <package>
+                            <name>ambari-logsearch-solr</name>
+                            <skipUpgrade>true</skipUpgrade>
+                        </package>
+                    </packages>
+                </osSpecific>
+            </osSpecifics>
+
+            <requiredServices>
+                <service>ZOOKEEPER</service>
+                <service>HDFS</service>
+            </requiredServices>
+
+            <commandScript>
+                <script>scripts/service_check.py</script>
+                <scriptType>PYTHON</scriptType>
+                <timeout>300</timeout>
+            </commandScript>
+
+            <configuration-dependencies>
+                <config-type>solr-config-env</config-type>
+                <config-type>solr-cloud</config-type>
+                <config-type>solr-hdfs</config-type>
+                <config-type>solr-ssl</config-type>
+                <config-type>example-collection</config-type>
+            </configuration-dependencies>
+            <restartRequiredAfterChange>false</restartRequiredAfterChange>
+        </service>
+    </services>
+</metainfo>

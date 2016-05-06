@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<configuration>
+    <property>
+        <name>solr.hdfs.enable</name>
+        <value>true</value>
+        <description>Enable support for Solr on HDFS</description>
+        <display-name>Enable support for Solr on HDFS</display-name>
+    </property>
+
+    <property>
+        <name>solr.hdfs.directory</name>
+        <value>/solr</value>
+        <description>HDFS directory for Solr indexes</description>
+        <display-name>HDFS directory for Solr indexes</display-name>
+    </property>
+</configuration>

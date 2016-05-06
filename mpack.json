@@ -1,0 +1,30 @@
+{
+  "type" : "full-release",
+  "name" : "solr-ambari-mpack",
+  "version": "5.4.1.0",
+  "description" : "SOLR Management Pack",
+  "prerequisites": {
+    "min_ambari_version" : "2.4.0.0"
+  },
+  "artifacts": [
+    {
+      "name" : "SOLR-common-services",
+      "type" : "service-definitions",
+      "source_dir": "common-services",
+      "service_version" : "5.4.1"
+    },
+    {
+      "name" : "SOLR-5.4.1",
+      "type" : "stack-extension-definition",
+      "source_dir": "custom-services/SOLR/5.4.1",
+      "service_name":"SOLR",
+      "service_version" : "5.4.1",
+      "applicable_stacks" : [
+        {
+          "stack_name" : "HDP",
+          "stack_version" : "2.4"
+        }
+      ]
+    }
+  ]
+}
