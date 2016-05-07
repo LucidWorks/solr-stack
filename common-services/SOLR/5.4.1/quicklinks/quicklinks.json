@@ -1,0 +1,34 @@
+{
+  "name": "default",
+  "description": "default quick links configuration",
+  "configuration": {
+    "protocol": {
+      "type": "https",
+      "checks": [
+        {
+          "property": "solr.ssl.enable",
+          "desired": "true",
+          "site": "solr-ssl"
+        }
+      ]
+    },
+    "links": [
+      {
+        "name": "solr_ui",
+        "label": "Solr UI",
+        "component_name": "SOLR_MASTER",
+        "url": "%@://%@:%@/solr",
+        "requires_user_name": "false",
+        "port": {
+          "http_property": "solr.config.port",
+          "http_default_port": "8983",
+          "https_property": "solr.config.port",
+          "https_default_port": "8983",
+          "regex": "^(\\d+)$",
+          "site": "solr-config-env"
+        }
+      }
+    ]
+  }
+}
+
