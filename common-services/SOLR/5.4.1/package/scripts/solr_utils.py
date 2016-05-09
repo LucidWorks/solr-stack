@@ -7,7 +7,8 @@ import re
 def solr_port_validation():
     import params
 
-    code, output = call(format('netstat -lnt | awk -v v1={solr_config_port} \'$6 == "LISTEN" && $4 ~ ":"+v1\''), timeout=60)
+    code, output = call(format('netstat -lnt | awk -v v1={solr_config_port} \'$6 == "LISTEN" && $4 ~ ":"+v1\''),
+                        timeout=60)
     Logger.info(format("Solr port validation output: {output}"))
 
     if "LISTEN" in output:
@@ -20,7 +21,8 @@ def solr_port_validation():
 def solr_status_validation():
     import params
 
-    code, output = call(format('{solr_config_bin_dir}/solr status'), timeout=60)
+    code, output = call(format('{solr_config_bin_dir}/solr status'),
+                        timeout=60)
     Logger.info(format("Solr status output: {output}"))
     pattern = re.compile("Found [0-9]+ Solr nodes:")
 
