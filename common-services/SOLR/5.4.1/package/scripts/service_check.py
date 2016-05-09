@@ -13,7 +13,7 @@ class ServiceCheck(Script):
         env.set_params(params)
 
         if not os.path.isfile(params.solr_config_pid_file):
-            Logger.info(format("PID file {solr_config_pid_file} does not exist"))
+            Logger.error(format("PID file {solr_config_pid_file} does not exist"))
             exit(1)
 
         if not params.solr_collection_sample_create:

@@ -2,11 +2,11 @@ from resource_management.core.resources.system import Execute, File
 from resource_management.libraries.functions.format import format
 from resource_management.libraries.functions.check_process_status import check_process_status
 from resource_management.libraries.script.script import Script
-from resource_management.core.logger import Logger
 from setup_solr import setup_solr
 from setup_solr_cloud import setup_solr_cloud
 from setup_solr_hdfs_support import setup_solr_hdfs_support
 from setup_solr_ssl_support import setup_solr_ssl_support
+from solr_utils import solr_status_validation, solr_port_validation
 
 
 class Solr(Script):
@@ -33,6 +33,12 @@ class Solr(Script):
         import params
         env.set_params(params)
         self.configure(env)
+
+        if not solr_port_validation():
+            exit(1)
+
+        if not solr_status_validation():
+            exit(1)
 
         start_command = format('{solr_config_bin_dir}/solr start')
 
