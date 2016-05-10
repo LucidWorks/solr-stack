@@ -6,6 +6,9 @@
         <name>solr.config.port</name>
         <value>8983</value>
         <description>Solr TCP port</description>
+        <value-attributes>
+            <type>int</type>
+        </value-attributes>
         <display-name>Solr port</display-name>
     </property>
 
@@ -29,7 +32,7 @@
         <value-attributes>
             <type>directory</type>
         </value-attributes>
-        <display-name>Solr heap size for the JVM</display-name>
+        <display-name>Solr configuration directory</display-name>
     </property>
 
     <property>
@@ -79,6 +82,7 @@
         <description>User for Solr service</description>
         <value-attributes>
             <type>user</type>
+            <overridable>false</overridable>
         </value-attributes>
         <display-name>Solr user</display-name>
     </property>
@@ -90,6 +94,7 @@
         <description>Group for Solr service</description>
         <value-attributes>
             <type>group</type>
+            <overridable>false</overridable>
         </value-attributes>
         <display-name>Solr group</display-name>
     </property>

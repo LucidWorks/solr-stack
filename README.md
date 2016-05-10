@@ -2,13 +2,13 @@
 
 Download solr-stack repository:
 
-    git clone https://github.com/lucidworks/solr-stack -b LWSHADOOP-487-Move-solr-stack-to-AMP
+    git clone https://github.com/lucidworks/solr-stack
 
 Create Solr service pack:
 
     tar -zcvf solr-ambari-mpack-5.4.1.0.tar.gz solr-stack/
 
-Install Solr service to Ambari:
+Deploy the Solr service on Ambari:
 
     ambari-server install-mpack --mpack=solr-ambari-mpack-5.4.1.0.tar.gz -v
 
