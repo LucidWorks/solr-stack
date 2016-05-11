@@ -107,41 +107,50 @@ class SOLR541ServiceAdvisor(service_advisor.ServiceAdvisor):
         return self.stackAdvisor.toConfigurationValidationProblems(items, SOLR_CONFIG_ENV)
 
     def validate_solr_cloud_configuration(self):
-        items = [
-            self.validator_entry('solr.cloud.enable', self.is_boolean, self.solr_cloud_properties),
-            self.validator_entry('solr.cloud.zk.directory', self.is_valid_path, self.solr_cloud_properties),
-        ]
+        items = [] if "false" in self.solr_cloud_properties["solr.cloud.enable"] else \
+            [
+                self.validator_entry('solr.cloud.enable', self.is_boolean, self.solr_cloud_properties),
+                self.validator_entry('solr.cloud.zk.directory', self.is_valid_path, self.solr_cloud_properties),
+            ]
         return self.stackAdvisor.toConfigurationValidationProblems(items, SOLR_CLOUD)
 
     def validate_solr_hdfs_configuration(self):
-        items = [
-            self.validator_entry('solr.hdfs.enable', self.is_boolean, self.solr_hdfs_properties),
-            self.validator_entry('solr.hdfs.directory', self.is_valid_path, self.solr_hdfs_properties),
-        ]
+        items = [] if "false" in self.solr_hdfs_properties["solr.hdfs.enable"] else \
+            [
+                self.validator_entry('solr.hdfs.enable', self.is_boolean, self.solr_hdfs_properties),
+                self.validator_entry('solr.hdfs.directory', self.is_valid_path, self.solr_hdfs_properties),
+            ]
         return self.stackAdvisor.toConfigurationValidationProblems(items, SOLR_HDFS)
 
     def validate_solr_ssl_configuration(self):
-        items = [
-            self.validator_entry('solr.ssl.enable', self.is_boolean, self.solr_ssl_properties),
-            self.validator_entry('solr.ssl.key.store', self.is_absolute_path, self.solr_ssl_properties),
-            self.validator_entry('solr.ssl.key.store.password', self.is_not_null_or_empty, self.solr_ssl_properties),
-            self.validator_entry('solr.ssl.trust.store', self.is_absolute_path, self.solr_ssl_properties),
-            self.validator_entry('solr.ssl.trust.store.password', self.is_not_null_or_empty, self.solr_ssl_properties),
-            self.validator_entry('solr.ssl.need.client.auth', self.is_boolean, self.solr_ssl_properties),
-            self.validator_entry('solr.ssl.want.client.auth', self.is_boolean, self.solr_ssl_properties)
-        ]
+        items = [] if "false" in self.solr_ssl_properties["solr.ssl.enable"] else \
+            [
+                self.validator_entry('solr.ssl.enable', self.is_boolean, self.solr_ssl_properties),
+                self.validator_entry('solr.ssl.key.store', self.is_absolute_path, self.solr_ssl_properties),
+                self.validator_entry('solr.ssl.key.store.password', self.is_not_null_or_empty,
+                                     self.solr_ssl_properties),
+                self.validator_entry('solr.ssl.trust.store', self.is_absolute_path, self.solr_ssl_properties),
+                self.validator_entry('solr.ssl.trust.store.password', self.is_not_null_or_empty,
+                                     self.solr_ssl_properties),
+                self.validator_entry('solr.ssl.need.client.auth', self.is_boolean, self.solr_ssl_properties),
+                self.validator_entry('solr.ssl.want.client.auth', self.is_boolean, self.solr_ssl_properties)
+            ]
         return self.stackAdvisor.toConfigurationValidationProblems(items, SOLR_SSL)
 
     def validate_example_collection_configuration(self):
-        items = [
-            self.validator_entry('solr.collection.sample.create', self.is_boolean, self.example_collection_properties),
-            self.validator_entry('solr.collection.sample.name', self.is_not_null_or_empty,
-                                 self.example_collection_properties),
-            self.validator_entry('solr.collection.sample.config.directory', self.is_not_null_or_empty,
-                                 self.example_collection_properties),
-            self.validator_entry('solr.collection.sample.shards', self.is_number, self.example_collection_properties),
-            self.validator_entry('solr.collection.sample.replicas', self.is_number, self.example_collection_properties)
-        ]
+        items = [] if "false" in self.example_collection_properties["solr.collection.sample.create"] else \
+            [
+                self.validator_entry('solr.collection.sample.create', self.is_boolean,
+                                     self.example_collection_properties),
+                self.validator_entry('solr.collection.sample.name', self.is_not_null_or_empty,
+                                     self.example_collection_properties),
+                self.validator_entry('solr.collection.sample.config.directory', self.is_not_null_or_empty,
+                                     self.example_collection_properties),
+                self.validator_entry('solr.collection.sample.shards', self.is_number,
+                                     self.example_collection_properties),
+                self.validator_entry('solr.collection.sample.replicas', self.is_number,
+                                     self.example_collection_properties)
+            ]
         return self.stackAdvisor.toConfigurationValidationProblems(items, EXAMPLE_COLLECTION)
 
     def getConfigurationsValidationItems(self, stackAdvisor, configurations, recommended_defaults, services, hosts):
