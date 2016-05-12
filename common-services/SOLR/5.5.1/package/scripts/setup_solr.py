@@ -1,7 +1,6 @@
-from resource_management.core.resources.system import Directory, File
+from resource_management.core.resources.system import Directory, File, Execute
 from resource_management.libraries.functions.format import format
 from resource_management.core.source import Template
-
 
 def setup_solr():
     import params
@@ -14,6 +13,11 @@ def setup_solr():
               group=params.solr_config_group,
               create_parents=True
               )
+
+    Execute(
+            ('chmod', '-R', '777', params.solr_webapp_dir),
+            sudo=True
+            )
 
     File(format("{solr_config_bin_dir}/solr.in.sh"),
          content=Template("solr.in.sh.j2"),
