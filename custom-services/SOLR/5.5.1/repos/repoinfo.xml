@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<reposinfo>
+    <os family="redhat6">
+        <repo>
+            <baseurl>http://public-repo-1.hortonworks.com.s3.amazonaws.com/HDP-SOLR-2.3-100/repos/centos6/</baseurl>
+            <repoid>LUCIDWORKS-HDPSEARCH</repoid>
+            <reponame>LUCIDWORKS-HDPSEARCH</reponame>
+        </repo>
+    </os>
+</reposinfo>

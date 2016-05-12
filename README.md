@@ -6,11 +6,11 @@ Download solr-stack repository:
 
 Create Solr service pack:
 
-    tar -zcvf solr-ambari-mpack-5.4.1.0.tar.gz solr-stack/
+    tar -zcvf solr-ambari-mpack-5.5.1.0.tar.gz solr-stack/
 
 Deploy the Solr service on Ambari:
 
-    ambari-server install-mpack --mpack=solr-ambari-mpack-5.4.1.0.tar.gz -v
+    ambari-server install-mpack --mpack=solr-ambari-mpack-5.5.1.0.tar.gz -v
 
 Restart Ambari:
 

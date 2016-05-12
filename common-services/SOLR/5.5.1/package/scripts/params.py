@@ -39,7 +39,7 @@ solr_config_service_log_file = format("{solr_config_service_log_dir}/solr-servic
 solr_config_conf_dir = map_solr_config['solr.config.conf.dir']
 solr_config_data_dir = map_solr_config['solr.config.data.dir']
 
-solr_config_dir = '/usr/lib/ambari-logsearch-solr'
+solr_config_dir = '/opt/lucidworks-hdpsearch/solr'
 solr_config_bin_dir = solr_config_dir + '/bin'
 solr_config_pid_dir = status_params.solr_config_pid_dir
 solr_config_pid_file = status_params.solr_config_pid_file

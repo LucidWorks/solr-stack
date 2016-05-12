@@ -10,7 +10,7 @@
                 faceted search, dynamic clustering, database integration, and
                 rich document (e.g., Word, PDF) handling.
             </comment>
-            <version>5.4.1</version>
+            <version>5.5.1</version>
 
             <components>
                 <component>
@@ -29,20 +29,10 @@
 
             <osSpecifics>
                 <osSpecific>
-                    <osFamily>redhat7,amazon2015,redhat6,suse11,suse12</osFamily>
+                    <osFamily>any</osFamily>
                     <packages>
                         <package>
-                            <name>ambari-logsearch-solr</name>
-                            <skipUpgrade>true</skipUpgrade>
-                        </package>
-                    </packages>
-                </osSpecific>
-                <osSpecific>
-                    <osFamily>debian7,ubuntu12,ubuntu14</osFamily>
-                    <packages>
-                        <package>
-                            <name>ambari-logsearch-solr</name>
-                            <skipUpgrade>true</skipUpgrade>
+                            <name>lucidworks-hdpsearch</name>
                         </package>
                     </packages>
                 </osSpecific>
@@ -66,7 +56,7 @@
                 <config-type>solr-ssl</config-type>
                 <config-type>example-collection</config-type>
             </configuration-dependencies>
-            <restartRequiredAfterChange>false</restartRequiredAfterChange>
+            <restartRequiredAfterChange>true</restartRequiredAfterChange>
 
             <quickLinksConfigurations>
                 <quickLinksConfiguration>

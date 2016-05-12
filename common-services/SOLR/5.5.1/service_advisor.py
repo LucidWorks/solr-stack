@@ -154,6 +154,9 @@ class SOLR541ServiceAdvisor(service_advisor.ServiceAdvisor):
         return self.stackAdvisor.toConfigurationValidationProblems(items, EXAMPLE_COLLECTION)
 
     def getConfigurationsValidationItems(self, stackAdvisor, configurations, recommended_defaults, services, hosts):
+        if not SOLR_CONFIG_ENV in configurations:
+            return []
+
         self.stackAdvisor = stackAdvisor
         self.solr_config_properties = configurations[SOLR_CONFIG_ENV][PROPERTIES]
         self.solr_cloud_properties = configurations[SOLR_CLOUD][PROPERTIES]
