@@ -14,8 +14,7 @@ def setup_solr():
               create_parents=True
               )
 
-    Execute(
-            ('chmod', '-R', '777', params.solr_webapp_dir),
+    Execute(('chmod', '-R', '777', params.solr_webapp_dir),
             sudo=True
             )
 
