@@ -3,7 +3,7 @@
 
 <configuration>
     <property>
-        <name>solr.cloud.enable</name>
+        <name>solr_cloud_enable</name>
         <value>true</value>
         <description>Whether Solr should be started in Cloud mode</description>
         <display-name>Enable Solr Cloud mode</display-name>
@@ -14,7 +14,7 @@
     </property>
 
     <property>
-        <name>solr.cloud.zk.directory</name>
+        <name>solr_cloud_zk_directory</name>
         <value>/solr</value>
         <description>Zookeeper directory for the Solr shared files</description>
         <display-name>Zookeeper directory for Solr files</display-name>

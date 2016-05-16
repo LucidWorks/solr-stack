@@ -3,7 +3,7 @@
 
 <configuration>
     <property>
-        <name>solr.collection.sample.create</name>
+        <name>solr_collection_sample_create</name>
         <value>true</value>
         <description>True to create a sample collection when Solr is deployed</description>
         <display-name>Create sample collection</display-name>
@@ -14,14 +14,14 @@
     </property>
 
     <property>
-        <name>solr.collection.sample.name</name>
+        <name>solr_collection_sample_name</name>
         <value>collection1</value>
         <description>Solr sample collection name. Mandatory</description>
         <display-name>Sample collection name</display-name>
     </property>
 
     <property>
-        <name>solr.collection.sample.config.directory</name>
+        <name>solr_collection_sample_config_directory</name>
         <value>data_driven_schema_configs</value>
         <description>Solr sample collection configurations directory. Mandatory
             This directory path is relative to /opt/lucidworks-hadoop/solr/server/solr/configset.
@@ -31,7 +31,7 @@
     </property>
 
     <property>
-        <name>solr.collection.sample.shards</name>
+        <name>solr_collection_sample_shards</name>
         <value>2</value>
         <description>Number of Solr shards, for details refer to
             (https://cwiki.apache.org/confluence/display/solr/Shards+and+Indexing+Data+in+SolrCloud)
@@ -43,7 +43,7 @@
     </property>
 
     <property>
-        <name>solr.collection.sample.replicas</name>
+        <name>solr_collection_sample_replicas</name>
         <value>1</value>
         <description>Number of Solr replicas, for details refer to
             (https://cwiki.apache.org/confluence/display/solr/NRT%2C+Replication%2C+and+Disaster+Recovery+with+SolrCloud)

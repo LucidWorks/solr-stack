@@ -3,7 +3,7 @@
 
 <configuration>
     <property>
-        <name>solr.hdfs.enable</name>
+        <name>solr_hdfs_enable</name>
         <value>true</value>
         <description>Enable support for Solr on HDFS</description>
         <display-name>Enable support for Solr on HDFS</display-name>
@@ -14,7 +14,7 @@
     </property>
 
     <property>
-        <name>solr.hdfs.directory</name>
+        <name>solr_hdfs_directory</name>
         <value>/solr</value>
         <description>HDFS directory for Solr indexes</description>
         <display-name>HDFS directory for Solr indexes</display-name>
