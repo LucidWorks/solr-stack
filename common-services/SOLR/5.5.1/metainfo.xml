@@ -14,7 +14,7 @@
 
             <components>
                 <component>
-                    <name>SOLR_MASTER</name>
+                    <name>SOLR_SERVER</name>
                     <displayName>Solr</displayName>
                     <category>MASTER</category>
                     <cardinality>1+</cardinality>

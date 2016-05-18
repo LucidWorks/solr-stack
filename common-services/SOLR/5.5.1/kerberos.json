@@ -1,0 +1,39 @@
+{
+  "services": [
+    {
+      "name": "SOLR",
+      "identities": [
+        {
+          "name": "/solruser"
+        }
+      ],
+      "components": [
+        {
+          "name": "SOLR_SERVER",
+          "identities": [
+            {
+              "name": "solr_kerberos",
+              "principal": {
+                "value": "solr/_HOST@${realm}",
+                "type" : "service",
+                "configuration": "solr-config-env/solr_principal_name"
+              },
+              "keytab": {
+                "file": "${keytab_dir}/solr.service.keytab",
+                "owner": {
+                  "name": "${solr-config-env/solr_config_user}",
+                  "access": "r"
+                },
+                "group": {
+                  "name": "${cluster-env/user_group}",
+                  "access": ""
+                },
+                "configuration": "solr-config-env/solr_keytab_path"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
