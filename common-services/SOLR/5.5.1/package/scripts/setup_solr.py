@@ -2,6 +2,7 @@ from resource_management.core.resources.system import Directory, File, Execute
 from resource_management.libraries.functions.format import format
 from resource_management.core.source import Template
 
+
 def setup_solr():
     import params
 

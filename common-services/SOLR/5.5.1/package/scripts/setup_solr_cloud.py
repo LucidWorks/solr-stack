@@ -1,6 +1,7 @@
 from resource_management.core.resources.system import Execute
 from resource_management.libraries.functions.format import format
 
+
 def setup_solr_cloud():
     import params
 

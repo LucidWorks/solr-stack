@@ -35,5 +35,6 @@ class ServiceCheck(Script):
                 user=params.solr_config_user
             )
 
+
 if __name__ == "__main__":
     ServiceCheck().execute()

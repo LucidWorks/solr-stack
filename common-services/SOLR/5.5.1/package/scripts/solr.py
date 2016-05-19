@@ -88,5 +88,6 @@ class Solr(Script):
 
         check_process_status(status_params.solr_config_pid_file)
 
+
 if __name__ == "__main__":
     Solr().execute()

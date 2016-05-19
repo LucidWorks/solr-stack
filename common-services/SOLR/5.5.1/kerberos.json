@@ -15,7 +15,7 @@
               "name": "solr_kerberos",
               "principal": {
                 "value": "solr/_HOST@${realm}",
-                "type" : "service",
+                "type": "service",
                 "configuration": "solr-config-env/solr_principal_name"
               },
               "keytab": {
