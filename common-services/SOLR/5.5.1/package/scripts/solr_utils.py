@@ -31,3 +31,20 @@ def solr_status_validation():
         return False
 
     return True
+
+
+def exists_collection(collection_name):
+    import params
+
+    if not params.solr_cloud_mode:
+        return False
+
+    zk_client_prefix = format('export JAVA_HOME={java64_home}; {cloud_scripts}/zkcli.sh -zkhost {zookeeper_hosts}')
+    code, output = call(format('{zk_client_prefix} -cmd get {solr_cloud_zk_directory}/collections/{collection_name}'),
+                        timeout=60
+                        )
+
+    if "NoNodeException" in output:
+        return False
+    else:
+        return True

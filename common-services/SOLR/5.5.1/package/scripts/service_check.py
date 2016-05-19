@@ -4,6 +4,8 @@ from resource_management.core.resources.system import Execute
 from resource_management.libraries.script import Script
 from resource_management.core.logger import Logger
 from resource_management.libraries.functions.format import format
+from solr_utils import exists_collection
+
 import os
 
 
@@ -18,6 +20,10 @@ class ServiceCheck(Script):
 
         if not params.solr_collection_sample_create:
             Logger.info("Create sample collection unchecked, skipping ...")
+            return
+
+        if exists_collection(params.solr_collection_name):
+            Logger.warning(format("Collection {solr_collection_name} already exists, skipping ..."))
             return
 
         if not params.solr_cloud_mode:
