@@ -4,7 +4,7 @@
       "name": "SOLR",
       "identities": [
         {
-          "name": "/solruser"
+          "name": "/spnego"
         }
       ],
       "components": [
@@ -29,6 +29,15 @@
                   "access": ""
                 },
                 "configuration": "solr-config-env/solr_keytab_path"
+              }
+            },
+            {
+              "name": "/spnego",
+              "principal": {
+                "configuration": "solr-config-env/solr_spnego_principal_name"
+              },
+              "keytab": {
+                "configuration": "solr-config-env/solr_spnego_keytab_path"
               }
             }
           ]

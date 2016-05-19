@@ -98,15 +98,4 @@
         </value-attributes>
         <display-name>Solr group</display-name>
     </property>
-
-    <property>
-        <name>solr_principal_name</name>
-        <description>Solr principal name</description>
-    </property>
-
-    <property>
-        <name>solr_keytab_path</name>
-        <description>Solr keytab path</description>
-    </property>
-
 </configuration>
