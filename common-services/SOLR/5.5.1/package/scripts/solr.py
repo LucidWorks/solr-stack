@@ -7,7 +7,7 @@ from setup_solr_cloud import setup_solr_cloud
 from setup_solr_hdfs_support import setup_solr_hdfs_support
 from setup_solr_ssl_support import setup_solr_ssl_support
 from setup_solr_kerberos_auth import setup_solr_kerberos_auth
-from solr_utils import solr_status_validation, solr_port_validation
+from solr_utils import solr_status_validation, solr_port_validation, delete_write_lock_files
 
 
 class Solr(Script):
@@ -32,6 +32,9 @@ class Solr(Script):
 
         if params.security_enabled:
             setup_solr_kerberos_auth()
+
+        if params.solr_cloud_mode and params.solr_hdfs_delete_write_lock_files:
+            delete_write_lock_files()
 
     def start(self, env):
         import params

@@ -19,4 +19,15 @@
         <description>HDFS directory for Solr indexes</description>
         <display-name>HDFS directory for Solr indexes</display-name>
     </property>
+
+    <property>
+        <name>solr_hdfs_delete_write_lock_files</name>
+        <value>false</value>
+        <description>Delete write.lock files on HDFS</description>
+        <display-name>Delete write.lock files on HDFS</display-name>
+        <value-attributes>
+            <type>boolean</type>
+            <overridable>false</overridable>
+        </value-attributes>
+    </property>
 </configuration>

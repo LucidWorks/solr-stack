@@ -54,7 +54,7 @@ map_solr_cloud = config['configurations']['solr-cloud']
 solr_cloud_mode = map_solr_cloud['solr_cloud_enable']
 solr_cloud_zk_directory = map_solr_cloud['solr_cloud_zk_directory']
 
-# collection sample
+# solr collection sample
 map_example_collection = config['configurations']['example-collection']
 solr_collection_sample_create = bool(map_example_collection['solr_collection_sample_create'])
 solr_collection_name = map_example_collection['solr_collection_sample_name']
@@ -62,7 +62,7 @@ solr_collection_config_dir = map_example_collection['solr_collection_sample_conf
 solr_collection_shards = str(map_example_collection['solr_collection_sample_shards'])
 solr_collection_replicas = str(map_example_collection['solr_collection_sample_replicas'])
 
-# HDFS
+# solr + HDFS
 map_solr_hdfs = config['configurations']['solr-hdfs']
 solr_hdfs_enable = bool(map_solr_hdfs['solr_hdfs_enable'])
 solr_hdfs_directory = map_solr_hdfs['solr_hdfs_directory']
@@ -76,6 +76,7 @@ dfs_type = default('/commandParams/dfs_type', '')
 security_enabled = security_enabled = config['configurations']['cluster-env']['security_enabled']
 kinit_path_local = get_kinit_path(default('/configurations/kerberos-env/executable_search_paths', None))
 hdfs_principal_name = config['configurations']['hadoop-env']['hdfs_principal_name']
+solr_hdfs_delete_write_lock_files = bool(map_solr_hdfs['solr_hdfs_delete_write_lock_files'])
 
 HdfsResource = functools.partial(
     HdfsResource,
@@ -93,7 +94,7 @@ HdfsResource = functools.partial(
     dfs_type=dfs_type
 )
 
-# solr ssl
+# solr + SSL
 map_solr_ssl = config['configurations']['solr-ssl']
 solr_ssl_enable = bool(map_solr_ssl['solr_ssl_enable'])
 solr_ssl_prefix = '#' if not solr_ssl_enable else ''

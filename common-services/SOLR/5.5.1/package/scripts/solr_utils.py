@@ -1,7 +1,12 @@
 from resource_management.core.shell import call
 from resource_management.libraries.functions.format import format
 from resource_management.core.logger import Logger
+from resource_management.core.resources.system import Execute
 import re
+import json
+
+COLLECTION_PATTERN = "\/solr\/[a-zA-Z0-9\._-]+"
+CORE_PATTERN = "{collection_path}\/core_node[0-9]+"
 
 
 def solr_port_validation():
@@ -48,3 +53,40 @@ def exists_collection(collection_name):
         return False
     else:
         return True
+
+
+def get_collection_paths(hadoop_output):
+    pattern = re.compile(COLLECTION_PATTERN)
+    collection_paths = re.findall(pattern, hadoop_output)
+    return collection_paths
+
+
+def get_core_paths(hadoop_output, collection_path):
+    pattern = re.compile(format(CORE_PATTERN))
+    core_paths = re.findall(pattern, hadoop_output)
+    return core_paths
+
+def delete_write_lock_files():
+    import params
+
+    if params.security_enabled:
+        kinit_if_needed = format("{kinit_path_local} {hdfs_principal_name} -kt {hdfs_user_keytab}; ")
+    else:
+        kinit_if_needed = ""
+
+    hadoop_prefix = format("{kinit_if_needed}hadoop --config {hadoop_conf_dir} dfs")
+    code, output = call(format("{hadoop_prefix} -ls {solr_hdfs_directory}"))
+    collections = get_collection_paths(output)
+    write_locks_to_delete = ''
+
+    for collection_path in collections:
+        code, output = call(format("{hadoop_prefix} -ls {collection_path}"))
+        core_paths = get_core_paths(output, collection_path)
+
+        for core_path in core_paths:
+            write_locks_to_delete += "{0}/data/index/write.lock ".format(core_path)
+
+    if len(write_locks_to_delete) > 1:
+        Execute(format("{hadoop_prefix} -rm -f {write_locks_to_delete}"),
+                user=params.hdfs_user
+                )
