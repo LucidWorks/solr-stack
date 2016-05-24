@@ -6,7 +6,7 @@
       "type": "https",
       "checks": [
         {
-          "property": "solr.ssl.enable",
+          "property": "solr_ssl_enable",
           "desired": "true",
           "site": "solr-ssl"
         }
@@ -20,9 +20,9 @@
         "url": "%@://%@:%@/solr",
         "requires_user_name": "false",
         "port": {
-          "http_property": "solr.config.port",
+          "http_property": "solr_config_port",
           "http_default_port": "8983",
-          "https_property": "solr.config.port",
+          "https_property": "solr_config_port",
           "https_default_port": "8983",
           "regex": "^(\\d+)$",
           "site": "solr-config-env"

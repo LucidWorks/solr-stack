@@ -53,6 +53,9 @@ cloud_scripts = format('{solr_config_dir}/server/scripts/cloud-scripts')
 map_solr_cloud = config['configurations']['solr-cloud']
 solr_cloud_mode = map_solr_cloud['solr_cloud_enable']
 solr_cloud_zk_directory = map_solr_cloud['solr_cloud_zk_directory']
+zk_client_prefix = format('export JAVA_HOME={java64_home}; {cloud_scripts}/zkcli.sh -zkhost {zookeeper_hosts}')
+clusterprops_json = '/clusterprops.json'
+clusterstate_json = '/clusterstate.json'
 
 # solr collection sample
 map_example_collection = config['configurations']['example-collection']
@@ -113,6 +116,7 @@ solr_kerberos_keytab = map_solr_config.get('solr_keytab_path', '')
 solr_kerberos_principal = map_solr_config.get('solr_principal_name', '')
 solr_spnego_keytab = map_solr_config.get('solr_spnego_keytab_path', '')
 solr_spnego_principal = map_solr_config.get('solr_spnego_principal_name', '')
+security_json = '/security.json'
 
 if security_enabled:
     solr_kerberos_principal = solr_kerberos_principal.replace('_HOST', hostname)
