@@ -12,7 +12,7 @@ def setup_solr_cloud():
                         )
 
     if not ("NoNodeException" in output):
-        Logger.info("ZK node {solr_cloud_zk_directory}{clusterstate_json} already exists, skipping ...")
+        Logger.info(format("ZK node {solr_cloud_zk_directory}{clusterstate_json} already exists, skipping ..."))
         return
 
     Execute(format('{zk_client_prefix} -cmd makepath {solr_cloud_zk_directory}'),
