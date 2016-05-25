@@ -37,7 +37,7 @@ class Solr(Script):
         else:
             remove_solr_kerberos_auth()
 
-        if params.solr_cloud_mode and params.solr_hdfs_delete_write_lock_files:
+        if params.solr_hdfs_delete_write_lock_files:
             delete_write_lock_files()
 
     def start(self, env):

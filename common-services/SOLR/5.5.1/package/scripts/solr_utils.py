@@ -3,10 +3,11 @@ from resource_management.libraries.functions.format import format
 from resource_management.core.logger import Logger
 from resource_management.core.resources.system import Execute
 import re
-import json
+import os
 
 COLLECTION_PATTERN = "\/solr\/[a-zA-Z0-9\._-]+"
 CORE_PATTERN = "{collection_path}\/core_node[0-9]+"
+WRITE_LOCK_PATTERN = "{0}/data/index/write.lock "
 
 
 def solr_port_validation():
@@ -42,7 +43,10 @@ def exists_collection(collection_name):
     import params
 
     if not params.solr_cloud_mode:
-        return False
+        if os.path.isdir(format("{solr_config_data_dir}/{collection_name}")):
+            return True
+        else:
+            return False
 
     code, output = call(format('{zk_client_prefix} -cmd get {solr_cloud_zk_directory}/collections/{collection_name}'),
                         timeout=60
@@ -65,27 +69,47 @@ def get_core_paths(hadoop_output, collection_path):
     core_paths = re.findall(pattern, hadoop_output)
     return core_paths
 
+
+def get_write_lock_files_solr_cloud(hadoop_prefix, collections):
+    write_locks_to_delete = ''
+
+    for collection_path in collections:
+        code, output = call(format('{hadoop_prefix} -ls {collection_path}'))
+        core_paths = get_core_paths(output, collection_path)
+
+        for core_path in core_paths:
+            write_locks_to_delete += WRITE_LOCK_PATTERN.format(core_path)
+
+    return write_locks_to_delete
+
+
+def get_write_lock_files_solr_standalone(hadoop_prefix, collections):
+    write_locks_to_delete = ''
+
+    for collection_path in collections:
+        write_locks_to_delete += WRITE_LOCK_PATTERN.format(collection_path)
+
+    return write_locks_to_delete
+
+
 def delete_write_lock_files():
     import params
 
     if params.security_enabled:
-        kinit_if_needed = format("{kinit_path_local} {hdfs_principal_name} -kt {hdfs_user_keytab}; ")
+        kinit_if_needed = format('{kinit_path_local} {hdfs_principal_name} -kt {hdfs_user_keytab}; ')
     else:
-        kinit_if_needed = ""
+        kinit_if_needed = ''
 
-    hadoop_prefix = format("{kinit_if_needed}hadoop --config {hadoop_conf_dir} dfs")
-    code, output = call(format("{hadoop_prefix} -ls {solr_hdfs_directory}"))
+    hadoop_prefix = format('{kinit_if_needed}hadoop --config {hadoop_conf_dir} dfs')
+    code, output = call(format('{hadoop_prefix} -ls {solr_hdfs_directory}'))
     collections = get_collection_paths(output)
-    write_locks_to_delete = ''
 
-    for collection_path in collections:
-        code, output = call(format("{hadoop_prefix} -ls {collection_path}"))
-        core_paths = get_core_paths(output, collection_path)
-
-        for core_path in core_paths:
-            write_locks_to_delete += "{0}/data/index/write.lock ".format(core_path)
+    if params.solr_cloud_mode:
+        write_locks_to_delete = get_write_lock_files_solr_cloud(hadoop_prefix, collections)
+    else:
+        write_locks_to_delete = get_write_lock_files_solr_standalone(hadoop_prefix, collections)
 
     if len(write_locks_to_delete) > 1:
-        Execute(format("{hadoop_prefix} -rm -f {write_locks_to_delete}"),
+        Execute(format('{hadoop_prefix} -rm -f {write_locks_to_delete}'),
                 user=params.hdfs_user
                 )
