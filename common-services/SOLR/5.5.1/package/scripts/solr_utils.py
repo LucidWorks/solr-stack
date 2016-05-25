@@ -83,7 +83,7 @@ def get_write_lock_files_solr_cloud(hadoop_prefix, collections):
     return write_locks_to_delete
 
 
-def get_write_lock_files_solr_standalone(hadoop_prefix, collections):
+def get_write_lock_files_solr_standalone(collections):
     write_locks_to_delete = ''
 
     for collection_path in collections:
@@ -107,7 +107,7 @@ def delete_write_lock_files():
     if params.solr_cloud_mode:
         write_locks_to_delete = get_write_lock_files_solr_cloud(hadoop_prefix, collections)
     else:
-        write_locks_to_delete = get_write_lock_files_solr_standalone(hadoop_prefix, collections)
+        write_locks_to_delete = get_write_lock_files_solr_standalone(collections)
 
     if len(write_locks_to_delete) > 1:
         Execute(format('{hadoop_prefix} -rm -f {write_locks_to_delete}'),
