@@ -18,7 +18,7 @@
     <services>
         <service>
             <name>SOLR</name>
-            <extends>common-services/SOLR/5.5.1</extends>
+            <extends>common-services/SOLR/{serviceVersion}</extends>
         </service>
     </services>
 </metainfo>

@@ -1,0 +1,76 @@
+import groovy.json.JsonSlurper
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+plugins {
+    id 'base'
+    id 'idea'
+}
+
+task wrapper(type: Wrapper) {
+    distributionUrl = "https://services.gradle.org/distributions/gradle-${gradleVersion}-bin.zip"
+}
+
+task setPackageVersion << {
+    ext.parsePackageVersion = { template, output, templates ->
+        def templateFile = new File(template)
+        def parsedContent = templateFile.text
+        templates.each { pattern, value ->
+            parsedContent = parsedContent.replaceAll(pattern, value)
+        }
+        def outputFile = new File(output)
+        outputFile.text = parsedContent
+    }
+
+    if (!buildDir.exists()) {
+        new File("${buildDir}/tmp/common-services").mkdirs()
+        new File("${buildDir}/tmp/custom-services").mkdirs()
+    }
+
+    parsePackageVersion("mpack.json.template", "${buildDir}/tmp/mpack.json", ["\\{serviceVersion\\}"  : serviceVersion,
+                                                                            "\\{minAmbariVersion\\}": minAmbariVersion,
+                                                                            "\\{stackVersion\\}"    : stackVersion])
+    parsePackageVersion("common-services/SOLR/serviceVersion/metainfo.xml.template",
+            "${buildDir}/tmp/common-services/metainfo.xml", ["\\{serviceVersion\\}": serviceVersion])
+    parsePackageVersion("custom-services/SOLR/serviceVersion/metainfo.xml.template",
+            "${buildDir}/tmp/custom-services/metainfo.xml", ["\\{serviceVersion\\}": serviceVersion])
+    parsePackageVersion("common-services/SOLR/serviceVersion/service_advisor.py.template",
+            "${buildDir}/tmp/common-services/service_advisor.py", ["SOLRServiceAdvisor": 'SOLR' +
+            serviceVersion.replaceAll('\\.', '') + 'ServiceAdvisor'])
+}
+
+task makePackage(type: Tar, dependsOn: ["setPackageVersion"]) {
+    baseName = packageName
+    archiveName = packageName + '-' + serviceVersion + '.tar.gz'
+    compression = Compression.GZIP
+    extension = 'tar.gz'
+    destinationDir = file(buildDir)
+
+    into(packageName) {
+        into('') {
+            from buildDir.path + '/tmp/mpack.json'
+        }
+
+        into('common-services/SOLR/' + serviceVersion) {
+            from('common-services/SOLR/serviceVersion') {
+                include('*')
+                exclude('metainfo.xml.template')
+                exclude('service_advisor.py.template')
+            }
+            from buildDir.path + '/tmp/common-services/service_advisor.py',
+                    buildDir.path + '/tmp/common-services/metainfo.xml'
+        }
+
+        into('custom-services/SOLR/' + serviceVersion) {
+            from('custom-services/SOLR/serviceVersion') {
+                include('*')
+                exclude('metainfo.xml.template')
+            }
+            from buildDir.path + '/tmp/custom-services/metainfo.xml'
+        }
+    }
+}

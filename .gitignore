@@ -3,3 +3,5 @@
 .swp
 .idea
 solr-service.iml
+.gradle/
+build/
