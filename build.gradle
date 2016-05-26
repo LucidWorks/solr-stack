@@ -45,7 +45,7 @@ task setPackageVersion << {
 
 task makePackage(type: Tar, dependsOn: ["setPackageVersion"]) {
     baseName = packageName
-    archiveName = packageName + '-' + serviceVersion + '.tar.gz'
+    archiveName = packageName + '-mpack-' + serviceVersion + '.tar.gz'
     compression = Compression.GZIP
     extension = 'tar.gz'
     destinationDir = file(buildDir)
