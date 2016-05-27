@@ -57,7 +57,7 @@ task makePackage(type: Tar, dependsOn: ["setPackageVersion"]) {
 
         into('common-services/SOLR/' + serviceVersion) {
             from('common-services/SOLR/serviceVersion') {
-                include('*')
+                include('**')
                 exclude('metainfo.xml.template')
                 exclude('service_advisor.py.template')
             }
@@ -67,7 +67,7 @@ task makePackage(type: Tar, dependsOn: ["setPackageVersion"]) {
 
         into('custom-services/SOLR/' + serviceVersion) {
             from('custom-services/SOLR/serviceVersion') {
-                include('*')
+                include('**')
                 exclude('metainfo.xml.template')
             }
             from buildDir.path + '/tmp/custom-services/metainfo.xml'
