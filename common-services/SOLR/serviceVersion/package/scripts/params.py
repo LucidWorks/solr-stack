@@ -33,6 +33,7 @@ zookeeper_hosts = build_zookeeper_hosts()
 
 map_solr_config = config['configurations']['solr-config-env']
 solr_config_user = map_solr_config['solr_config_user']
+solr_hdfs_home_directory = '/user/' + solr_config_user
 solr_config_group = map_solr_config['solr_config_group']
 solr_config_port = status_params.solr_config_port
 solr_config_memory = map_solr_config['solr_config_memory']
