@@ -2,6 +2,6 @@
 .class
 .swp
 .idea
-solr-service.iml
+*.iml
 .gradle/
 build/
