@@ -16,39 +16,39 @@
     <property>
         <name>solr_ssl_key_store</name>
         <value>etc/solr-ssl.keystore.jks</value>
-        <description>SSL key store file</description>
-        <display-name>SSL key store file</display-name>
+        <description>SSL keystore file</description>
+        <display-name>SSL keystore file</display-name>
     </property>
 
     <property>
         <name>solr_ssl_key_store_password</name>
         <value>secret</value>
         <property-type>PASSWORD</property-type>
-        <description>SSL key store password</description>
+        <description>SSL keystore password</description>
         <value-attributes>
             <type>password</type>
             <overridable>false</overridable>
         </value-attributes>
-        <display-name>SSL key store password</display-name>
+        <display-name>SSL keystore password</display-name>
     </property>
 
     <property>
         <name>solr_ssl_trust_store</name>
         <value>etc/solr-ssl.keystore.jks</value>
-        <description>SSL trust store file</description>
-        <display-name>SSL trust store file</display-name>
+        <description>SSL truststore file</description>
+        <display-name>SSL truststore file</display-name>
     </property>
 
     <property>
         <name>solr_ssl_trust_store_password</name>
         <value>secret</value>
         <property-type>PASSWORD</property-type>
-        <description>SSL trust store password</description>
+        <description>SSL truststore password</description>
         <value-attributes>
             <type>password</type>
             <overridable>false</overridable>
         </value-attributes>
-        <display-name>SSL trust store password</display-name>
+        <display-name>SSL truststore password</display-name>
     </property>
 
     <property>
