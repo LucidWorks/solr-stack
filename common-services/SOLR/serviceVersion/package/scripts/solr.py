@@ -65,8 +65,8 @@ class Solr(Script):
             if params.security_enabled:
                 start_command += format(' -Dsolr.hdfs.confdir={hadoop_conf_dir}')
                 start_command += format(' -Dsolr.hdfs.security.kerberos.enabled=true')
-                start_command += format(' -Dsolr.hdfs.security.kerberos.keytabfile={hdfs_user_keytab}')
-                start_command += format(' -Dsolr.hdfs.security.kerberos.principal={hdfs_principal_name}')
+                start_command += format(' -Dsolr.hdfs.security.kerberos.keytabfile={solr_kerberos_keytab}')
+                start_command += format(' -Dsolr.hdfs.security.kerberos.principal={solr_kerberos_principal}')
 
         start_command += format(' -p {solr_config_port} -m {solr_config_memory} >> {solr_config_service_log_file} 2>&1')
 
