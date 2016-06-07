@@ -1,6 +1,6 @@
 from resource_management.core.resources.system import Directory, File, Execute
 from resource_management.libraries.functions.format import format
-from resource_management.core.source import Template
+from resource_management.core.source import Template, InlineTemplate
 
 
 def setup_solr():
@@ -20,12 +20,12 @@ def setup_solr():
             )
 
     File(format("{solr_config_bin_dir}/solr.in.sh"),
-         content=Template("solr.in.sh.j2"),
+         content=InlineTemplate(params.solr_config_in_sh),
          owner=params.solr_config_user
          )
 
     File(format("{solr_config_conf_dir}/log4j.properties"),
-         content=Template("log4j.properties.j2"),
+         content=InlineTemplate(params.log4j_properties),
          owner=params.solr_config_user
          )
 

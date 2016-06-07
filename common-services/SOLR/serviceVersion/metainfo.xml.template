@@ -53,6 +53,7 @@
                 <config-type>solr-config-env</config-type>
                 <config-type>solr-cloud</config-type>
                 <config-type>solr-hdfs</config-type>
+                <config-type>solr-log4j</config-type>
                 <config-type>solr-ssl</config-type>
                 <config-type>example-collection</config-type>
             </configuration-dependencies>

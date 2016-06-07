@@ -42,6 +42,10 @@ solr_config_service_log_dir = map_solr_config['solr_config_service_log_dir']
 solr_config_service_log_file = format('{solr_config_service_log_dir}/solr-service.log')
 solr_config_conf_dir = map_solr_config['solr_config_conf_dir']
 solr_config_data_dir = map_solr_config['solr_config_data_dir']
+solr_config_in_sh = map_solr_config['content']
+solr_hostname = hostname
+
+log4j_properties = config['configurations']['solr-log4j']['content']
 
 solr_config_dir = '/opt/lucidworks-hdpsearch/solr'
 solr_config_bin_dir = format('{solr_config_dir}/bin')
