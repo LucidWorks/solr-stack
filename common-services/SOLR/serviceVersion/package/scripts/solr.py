@@ -72,6 +72,7 @@ class Solr(Script):
 
         Execute(
             start_command,
+            environment={'JAVA_HOME': params.java64_home},            
             user=params.solr_config_user
         )
 
@@ -81,6 +82,7 @@ class Solr(Script):
 
         Execute(
             format('{solr_config_bin_dir}/solr stop -all >> {solr_config_service_log_file} 2>&1'),
+            environment={'JAVA_HOME': params.java64_home},
             user=params.solr_config_user
         )
 
