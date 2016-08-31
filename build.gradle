@@ -12,7 +12,7 @@ plugins {
 }
 
 task wrapper(type: Wrapper) {
-    distributionUrl = "https://services.gradle.org/distributions/gradle-${gradleVersion}-bin.zip"
+    gradleVersion = '3.0'
 }
 
 task setPackageVersion << {
