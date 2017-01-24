@@ -30,7 +30,7 @@ CONNECTION_TIMEOUT_KEY = "connection.timeout"
 METRIC_NAMES_DEFAULT = "solr.admin.info.jvm.memory.used,solr.admin.info.jvm.memory.max"
 METRIC_NAMES_KEY = "metric.names"
 
-APP_ID_DEFAULT = "solr-timeline-app"
+APP_ID_DEFAULT = "solr-host-app"
 APP_ID_KEY = "app.id"
 
 WARNING_THRESHOLD_DEFAULT = 50

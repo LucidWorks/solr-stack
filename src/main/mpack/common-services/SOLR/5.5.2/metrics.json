@@ -773,68 +773,392 @@
               "temporal": true,
               "amsHostMetric": true
             },
-            "metrics/solr/admin/mbeans/queryHandler/admin/threads/requests" : {
-              "metric": "solr.admin.mbeans.queryHandler.admin.threads.requests",
+            "metrics/solr/admin/mbeans/queryHandler/browse/requests" : {
+              "metric": "solr.admin.mbeans.queryHandler.browse.requests",
               "pointInTime": true,
               "temporal": true,
               "amsHostMetric": true
             },
-            "metrics/solr/admin/mbeans/queryHandler/admin/threads/errors" : {
-              "metric": "solr.admin.mbeans.queryHandler.admin.threads.errors",
+            "metrics/solr/admin/mbeans/queryHandler/browse/errors" : {
+              "metric": "solr.admin.mbeans.queryHandler.browse.errors",
               "pointInTime": true,
               "temporal": true,
               "amsHostMetric": true
             },
-            "metrics/solr/admin/mbeans/queryHandler/admin/threads/timeouts" : {
-              "metric": "solr.admin.mbeans.queryHandler.admin.threads.timeouts",
+            "metrics/solr/admin/mbeans/queryHandler/browse/timeouts" : {
+              "metric": "solr.admin.mbeans.queryHandler.browse.timeouts",
               "pointInTime": true,
               "temporal": true,
               "amsHostMetric": true
             },
-            "metrics/solr/admin/mbeans/queryHandler/admin/threads/totalTime" : {
-              "metric": "solr.admin.mbeans.queryHandler.admin.threads.totalTime",
+            "metrics/solr/admin/mbeans/queryHandler/browse/totalTime" : {
+              "metric": "solr.admin.mbeans.queryHandler.browse.totalTime",
               "pointInTime": true,
               "temporal": true,
               "amsHostMetric": true
             },
-            "metrics/solr/admin/mbeans/queryHandler/admin/threads/avgRequestsPerSecond" : {
-              "metric": "solr.admin.mbeans.queryHandler.admin.threads.avgRequestsPerSecond",
+            "metrics/solr/admin/mbeans/queryHandler/browse/avgRequestsPerSecond" : {
+              "metric": "solr.admin.mbeans.queryHandler.browse.avgRequestsPerSecond",
               "pointInTime": true,
               "temporal": true,
               "amsHostMetric": true
             },
-            "metrics/solr/admin/mbeans/queryHandler/admin/threads/5minRateReqsPerSecond" : {
-              "metric": "solr.admin.mbeans.queryHandler.admin.threads.5minRateReqsPerSecond",
+            "metrics/solr/admin/mbeans/queryHandler/browse/5minRateReqsPerSecond" : {
+              "metric": "solr.admin.mbeans.queryHandler.browse.5minRateReqsPerSecond",
               "pointInTime": true,
               "temporal": true,
               "amsHostMetric": true
             },
-            "metrics/solr/admin/mbeans/queryHandler/admin/threads/15minRateReqsPerSecond" : {
-              "metric": "solr.admin.mbeans.queryHandler.admin.threads.15minRateReqsPerSecond",
+            "metrics/solr/admin/mbeans/queryHandler/browse/15minRateReqsPerSecond" : {
+              "metric": "solr.admin.mbeans.queryHandler.browse.15minRateReqsPerSecond",
               "pointInTime": true,
               "temporal": true,
               "amsHostMetric": true
             },
-            "metrics/solr/admin/mbeans/queryHandler/admin/threads/avgTimePerRequest" : {
-              "metric": "solr.admin.mbeans.queryHandler.admin.threads.avgTimePerRequest",
+            "metrics/solr/admin/mbeans/queryHandler/browse/avgTimePerRequest" : {
+              "metric": "solr.admin.mbeans.queryHandler.browse.avgTimePerRequest",
               "pointInTime": true,
               "temporal": true,
               "amsHostMetric": true
             },
-            "metrics/solr/admin/mbeans/queryHandler/admin/threads/medianRequestTime" : {
-              "metric": "solr.admin.mbeans.queryHandler.admin.threads.medianRequestTime",
+            "metrics/solr/admin/mbeans/queryHandler/browse/medianRequestTime" : {
+              "metric": "solr.admin.mbeans.queryHandler.browse.medianRequestTime",
               "pointInTime": true,
               "temporal": true,
               "amsHostMetric": true
             },
-            "metrics/solr/admin/mbeans/queryHandler/admin/threads/75thPcRequestTime" : {
-              "metric": "solr.admin.mbeans.queryHandler.admin.threads.75thPcRequestTime",
+            "metrics/solr/admin/mbeans/queryHandler/browse/75thPcRequestTime" : {
+              "metric": "solr.admin.mbeans.queryHandler.browse.75thPcRequestTime",
               "pointInTime": true,
               "temporal": true,
               "amsHostMetric": true
             },
-            "metrics/solr/admin/mbeans/queryHandler/admin/threads/95thPcRequestTime" : {
-              "metric": "solr.admin.mbeans.queryHandler.admin.threads.95thPcRequestTime",
+            "metrics/solr/admin/mbeans/queryHandler/browse/95thPcRequestTime" : {
+              "metric": "solr.admin.mbeans.queryHandler.browse.95thPcRequestTime",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/browse/99thPcRequestTime" : {
+              "metric": "solr.admin.mbeans.queryHandler.browse.99thPcRequestTime",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/browse/999thPcRequestTime" : {
+              "metric": "solr.admin.mbeans.queryHandler.browse.999thPcRequestTime",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/select/requests" : {
+              "metric": "solr.admin.mbeans.queryHandler.select.requests",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/select/errors" : {
+              "metric": "solr.admin.mbeans.queryHandler.select.errors",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/select/timeouts" : {
+              "metric": "solr.admin.mbeans.queryHandler.select.timeouts",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/select/totalTime" : {
+              "metric": "solr.admin.mbeans.queryHandler.select.totalTime",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/select/avgRequestsPerSecond" : {
+              "metric": "solr.admin.mbeans.queryHandler.select.avgRequestsPerSecond",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/select/5minRateReqsPerSecond" : {
+              "metric": "solr.admin.mbeans.queryHandler.select.5minRateReqsPerSecond",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/select/15minRateReqsPerSecond" : {
+              "metric": "solr.admin.mbeans.queryHandler.select.15minRateReqsPerSecond",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/select/avgTimePerRequest" : {
+              "metric": "solr.admin.mbeans.queryHandler.select.avgTimePerRequest",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/select/medianRequestTime" : {
+              "metric": "solr.admin.mbeans.queryHandler.select.medianRequestTime",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/select/75thPcRequestTime" : {
+              "metric": "solr.admin.mbeans.queryHandler.select.75thPcRequestTime",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/select/95thPcRequestTime" : {
+              "metric": "solr.admin.mbeans.queryHandler.select.95thPcRequestTime",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/select/99thPcRequestTime" : {
+              "metric": "solr.admin.mbeans.queryHandler.select.99thPcRequestTime",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/select/999thPcRequestTime" : {
+              "metric": "solr.admin.mbeans.queryHandler.select.999thPcRequestTime",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/export/requests" : {
+              "metric": "solr.admin.mbeans.queryHandler.export.requests",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/export/errors" : {
+              "metric": "solr.admin.mbeans.queryHandler.export.errors",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/export/timeouts" : {
+              "metric": "solr.admin.mbeans.queryHandler.export.timeouts",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/export/totalTime" : {
+              "metric": "solr.admin.mbeans.queryHandler.export.totalTime",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/export/avgRequestsPerSecond" : {
+              "metric": "solr.admin.mbeans.queryHandler.export.avgRequestsPerSecond",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/export/5minRateReqsPerSecond" : {
+              "metric": "solr.admin.mbeans.queryHandler.export.5minRateReqsPerSecond",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/export/15minRateReqsPerSecond" : {
+              "metric": "solr.admin.mbeans.queryHandler.export.15minRateReqsPerSecond",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/export/avgTimePerRequest" : {
+              "metric": "solr.admin.mbeans.queryHandler.export.avgTimePerRequest",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/export/medianRequestTime" : {
+              "metric": "solr.admin.mbeans.queryHandler.export.medianRequestTime",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/export/75thPcRequestTime" : {
+              "metric": "solr.admin.mbeans.queryHandler.export.75thPcRequestTime",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/export/95thPcRequestTime" : {
+              "metric": "solr.admin.mbeans.queryHandler.export.95thPcRequestTime",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/export/99thPcRequestTime" : {
+              "metric": "solr.admin.mbeans.queryHandler.export.99thPcRequestTime",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/export/999thPcRequestTime" : {
+              "metric": "solr.admin.mbeans.queryHandler.export.999thPcRequestTime",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/get/requests" : {
+              "metric": "solr.admin.mbeans.queryHandler.get.requests",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/get/errors" : {
+              "metric": "solr.admin.mbeans.queryHandler.get.errors",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/get/timeouts" : {
+              "metric": "solr.admin.mbeans.queryHandler.get.timeouts",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/get/totalTime" : {
+              "metric": "solr.admin.mbeans.queryHandler.get.totalTime",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/get/avgRequestsPerSecond" : {
+              "metric": "solr.admin.mbeans.queryHandler.get.avgRequestsPerSecond",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/get/5minRateReqsPerSecond" : {
+              "metric": "solr.admin.mbeans.queryHandler.get.5minRateReqsPerSecond",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/get/15minRateReqsPerSecond" : {
+              "metric": "solr.admin.mbeans.queryHandler.get.15minRateReqsPerSecond",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/get/avgTimePerRequest" : {
+              "metric": "solr.admin.mbeans.queryHandler.get.avgTimePerRequest",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/get/medianRequestTime" : {
+              "metric": "solr.admin.mbeans.queryHandler.get.medianRequestTime",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/get/75thPcRequestTime" : {
+              "metric": "solr.admin.mbeans.queryHandler.get.75thPcRequestTime",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/get/95thPcRequestTime" : {
+              "metric": "solr.admin.mbeans.queryHandler.get.95thPcRequestTime",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/get/99thPcRequestTime" : {
+              "metric": "solr.admin.mbeans.queryHandler.get.99thPcRequestTime",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/get/999thPcRequestTime" : {
+              "metric": "solr.admin.mbeans.queryHandler.get.999thPcRequestTime",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/query/requests" : {
+              "metric": "solr.admin.mbeans.queryHandler.query.requests",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/query/errors" : {
+              "metric": "solr.admin.mbeans.queryHandler.query.errors",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/query/timeouts" : {
+              "metric": "solr.admin.mbeans.queryHandler.query.timeouts",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/query/totalTime" : {
+              "metric": "solr.admin.mbeans.queryHandler.query.totalTime",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/query/avgRequestsPerSecond" : {
+              "metric": "solr.admin.mbeans.queryHandler.query.avgRequestsPerSecond",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/query/5minRateReqsPerSecond" : {
+              "metric": "solr.admin.mbeans.queryHandler.query.5minRateReqsPerSecond",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/query/15minRateReqsPerSecond" : {
+              "metric": "solr.admin.mbeans.queryHandler.query.15minRateReqsPerSecond",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/query/avgTimePerRequest" : {
+              "metric": "solr.admin.mbeans.queryHandler.query.avgTimePerRequest",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/query/medianRequestTime" : {
+              "metric": "solr.admin.mbeans.queryHandler.query.medianRequestTime",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/query/75thPcRequestTime" : {
+              "metric": "solr.admin.mbeans.queryHandler.query.75thPcRequestTime",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/query/95thPcRequestTime" : {
+              "metric": "solr.admin.mbeans.queryHandler.query.95thPcRequestTime",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/query/99thPcRequestTime" : {
+              "metric": "solr.admin.mbeans.queryHandler.query.99thPcRequestTime",
+              "pointInTime": true,
+              "temporal": true,
+              "amsHostMetric": true
+            },
+            "metrics/solr/admin/mbeans/queryHandler/query/999thPcRequestTime" : {
+              "metric": "solr.admin.mbeans.queryHandler.query.999thPcRequestTime",
               "pointInTime": true,
               "temporal": true,
               "amsHostMetric": true

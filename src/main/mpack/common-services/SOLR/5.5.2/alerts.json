@@ -47,7 +47,7 @@
             },
             {
               "name": "app.id",
-              "value": "solr-timeline-app",
+              "value": "solr-host-app",
               "type": "STRING",
               "visibility": "HIDDEN"
             },
@@ -97,7 +97,7 @@
             },
             {
               "name": "app.id",
-              "value": "solr-timeline-app",
+              "value": "solr-host-app",
               "type": "STRING",
               "visibility": "HIDDEN"
             },
