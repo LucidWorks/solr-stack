@@ -170,14 +170,11 @@ if has_metric_collector:
     metric_truststore_password = default(
             "/configurations/ams-ssl-client/ssl.client.truststore.password", "")
 
-metrics_report_interval = default("/configurations/ams-site/timeline.metrics.sink.report.interval",
-                                  60)
-metrics_collection_period = default(
-    "/configurations/ams-site/timeline.metrics.sink.collection.period", 10)
-
 solr_metrics = config['configurations']['solr-metrics']
 solr_enable_metrics = bool(solr_metrics['solr_enable_metrics'])
 
+solr_metrics_delay = solr_metrics['solr_metrics_delay']
+solr_metrics_period = solr_metrics['solr_metrics_period']
 solr_core_stats = bool(solr_metrics['solr_core_stats'])
 solr_cache_stats = bool(solr_metrics['solr_cache_stats'])
 solr_updatehandler_stats = bool(solr_metrics['solr_updatehandler_stats'])

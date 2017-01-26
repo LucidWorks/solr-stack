@@ -104,6 +104,32 @@
     </property>
 
     <property>
+        <name>solr_metrics_delay</name>
+        <value>500</value>
+        <description>
+            Time in milliseconds before task is to be executed.
+            Default value is 500 milliseconds.
+        </description>
+        <value-attributes>
+            <type>int</type>
+        </value-attributes>
+        <display-name>Solr Metrics delay</display-name>
+    </property>
+
+    <property>
+        <name>solr_metrics_period</name>
+        <value>5000</value>
+        <description>
+            Time in milliseconds between successive task executions.
+            Default value is 5000 milliseconds / 5 seconds.
+        </description>
+        <value-attributes>
+            <type>int</type>
+        </value-attributes>
+        <display-name>Solr Metrics period</display-name>
+    </property>
+
+    <property>
         <name>solr_metrics_properties</name>
         <description>This is the jinja template for solr.metrics.properties file</description>
         <value>
@@ -117,8 +143,8 @@
             jaas.file=
 
             # Metrics
-            metrics.delay={{metrics_report_interval}}
-            metrics.period={{metrics_collection_period}}
+            metrics.delay={{solr_metrics_delay}}
+            metrics.period={{solr_metrics_period}}
 
             metrics.core.stats={{solr_core_stats}}
             metrics.cache.stats={{solr_cache_stats}}
