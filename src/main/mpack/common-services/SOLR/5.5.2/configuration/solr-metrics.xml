@@ -140,7 +140,7 @@
             keystore.path=
             keystore.type=
             keystore.password=
-            jaas.file=
+            jaas.file={{solr_kerberos_jaas_config}}
 
             # Metrics
             metrics.delay={{solr_metrics_delay}}
