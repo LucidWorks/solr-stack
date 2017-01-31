@@ -118,6 +118,7 @@ solr_ssl_trust_store = map_solr_ssl['solr_ssl_trust_store']
 solr_ssl_trust_store_password = map_solr_ssl['solr_ssl_trust_store_password']
 solr_ssl_need_client_auth = map_solr_ssl['solr_ssl_need_client_auth']
 solr_ssl_want_client_auth = map_solr_ssl['solr_ssl_want_client_auth']
+solr_protocol = 'https' if solr_ssl_enable else 'http'
 
 # solr + kerberos auth
 solr_kerberos_prefix = '#' if not security_enabled else ''

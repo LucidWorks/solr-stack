@@ -101,8 +101,8 @@
 
     <!-- solr.in.sh -->
     <property>
-        <name>content</name>
-        <description>This is the jinja template for solr.in.sh file</description>
+        <name>solr.in.sh template</name>
+        <description>This is a template for the solr.in.sh file</description>
         <value>
             # Licensed to the Apache Software Foundation (ASF) under one or more
             # contributor license agreements.  See the NOTICE file distributed with

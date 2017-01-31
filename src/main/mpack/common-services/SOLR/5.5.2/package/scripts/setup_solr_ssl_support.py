@@ -10,7 +10,7 @@ def setup_solr_ssl_support():
             format(
                     '{zk_client_prefix}{solr_cloud_zk_directory} -cmd clusterprop -name urlScheme -val https'
             ),
-            env={'JAVA_HOME': params.java64_home},
+            environment={'JAVA_HOME': params.java64_home},
             ignore_failures=True,
             user=params.solr_config_user
     )

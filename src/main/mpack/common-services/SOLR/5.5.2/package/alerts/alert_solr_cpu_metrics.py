@@ -1,6 +1,7 @@
 import urllib
 import httplib
 import json
+import time
 
 from ambari_commons.ambari_metrics_helper import select_metric_collector_hosts_from_hostnames
 from ambari_commons.ambari_metrics_helper import load_properties_from_file
@@ -21,6 +22,7 @@ METRICS_COLLECTOR_VIP_HOST_KEY = '{{cluster-env/metrics_collector_vip_host}}'
 METRICS_COLLECTOR_VIP_PORT_KEY = '{{cluster-env/metrics_collector_vip_port}}'
 
 SOLR_METRICS_CONF_DIR = '{{solr-metrics/solr_metrics_config_conf_dir}}'
+SOLR_METRICS_PERIOD = '{{solr-metrics/solr_metrics_period}}'
 
 AMS_METRICS_GET_URL = "/ws/v1/timeline/metrics?%s"
 
@@ -46,7 +48,8 @@ def get_tokens():
     to build the dictionary passed into execute
     """
     return (SMOKEUSER_KEY, KERBEROS_KEYTAB, KERBEROS_PRINCIPAL, SECURITY_ENABLED_KEY, METRICS_COLLECTOR_VIP_HOST_KEY,
-            METRICS_COLLECTOR_VIP_PORT_KEY, METRICS_COLLECTOR_WEBAPP_ADDRESS_KEY, SOLR_METRICS_CONF_DIR)
+            METRICS_COLLECTOR_VIP_PORT_KEY, METRICS_COLLECTOR_WEBAPP_ADDRESS_KEY, SOLR_METRICS_CONF_DIR,
+            SOLR_METRICS_PERIOD)
 
 
 def execute(configurations={}, parameters={}, host_name=None):
@@ -76,10 +79,16 @@ def execute(configurations={}, parameters={}, host_name=None):
     if CRITICAL_THRESHOLD_KEY in parameters:
         critical_threshold = parameters[CRITICAL_THRESHOLD_KEY]
 
+    current_time = int(time.time()) * 1000
+    metric_period = int(configurations[SOLR_METRICS_PERIOD])
+    start_time = current_time - metric_period
+
     get_metrics_parameters = {
         "metricNames": metric_name,
         "appId": app_id,
         "hostname": host_name,
+        "startTime": start_time,
+        "endTime": current_time,
         "grouped": "true",
     }
 
@@ -105,7 +114,7 @@ def execute(configurations={}, parameters={}, host_name=None):
                 break
 
     if int(cpu_load_value) == -1:
-        return RESULT_STATE_SKIPPED, ["There is not enough data"]
+        return RESULT_STATE_UNKNOWN, ["There is not enough data"]
 
     response = 'CPU load {0:.2f} %'.format(cpu_load_value)
 

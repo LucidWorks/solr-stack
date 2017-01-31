@@ -137,9 +137,10 @@
             truststore.path={{metric_truststore_path}}
             truststore.type={{metric_truststore_type}}
             truststore.password={{metric_truststore_password}}
-            keystore.path=
-            keystore.type=
-            keystore.password=
+
+            solr.truststore.path={{solr_ssl_trust_store}}
+            solr.truststore.password={{solr_ssl_trust_store_password}}
+
             jaas.file={{solr_kerberos_jaas_config}}
 
             # Metrics
@@ -159,7 +160,7 @@
             collector.protocol={{metric_collector_protocol}}
 
             # Solr
-            solr.host=http://{{hostname}}:{{solr_config_port}}/solr
+            solr.host={{solr_protocol}}://{{hostname}}:{{solr_config_port}}/solr
             solr.retry.times=3
             solr.retry.interval=10
         </value>
