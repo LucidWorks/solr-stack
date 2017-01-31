@@ -181,7 +181,8 @@ solr_cache_stats = bool(solr_metrics['solr_cache_stats'])
 solr_updatehandler_stats = bool(solr_metrics['solr_updatehandler_stats'])
 solr_queryhandler_stats = bool(solr_metrics['solr_queryhandler_stats'])
 solr_system_stats = bool(solr_metrics['solr_system_stats'])
-solr_status_stats = bool(solr_metrics['solr_status_stats'])
+#solr_status_stats = bool(solr_metrics['solr_status_stats'])
+solr_status_stats = False
 
 solr_metrics_config_conf_dir = solr_metrics['solr_metrics_config_conf_dir']
 solr_metrics_config_pid_dir = solr_metrics['solr_metrics_config_pid_dir']
