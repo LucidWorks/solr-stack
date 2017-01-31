@@ -63,7 +63,7 @@
         </value-attributes>
     </property>
 
-    <property>
+    <!--<property>
         <name>solr_status_stats</name>
         <value>true</value>
         <description>Enable Solr Status metrics</description>
@@ -71,7 +71,7 @@
         <value-attributes>
             <type>boolean</type>
         </value-attributes>
-    </property>
+    </property>-->
 
     <property>
         <name>solr_metrics_config_conf_dir</name>

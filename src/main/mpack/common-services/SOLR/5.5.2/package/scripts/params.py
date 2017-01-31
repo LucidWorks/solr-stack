@@ -45,7 +45,7 @@ solr_config_service_log_dir = map_solr_config['solr_config_service_log_dir']
 solr_config_service_log_file = format('{solr_config_service_log_dir}/solr-service.log')
 solr_config_conf_dir = map_solr_config['solr_config_conf_dir']
 solr_config_data_dir = map_solr_config['solr_config_data_dir']
-solr_config_in_sh = map_solr_config['content']
+solr_config_in_sh = map_solr_config['solr_in_sh_template']
 solr_hostname = hostname
 
 log4j_properties = config['configurations']['solr-log4j']['content']

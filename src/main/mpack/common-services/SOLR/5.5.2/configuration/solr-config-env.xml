@@ -101,7 +101,8 @@
 
     <!-- solr.in.sh -->
     <property>
-        <name>solr.in.sh template</name>
+        <name>solr_in_sh_template</name>
+        <display-name>solr.in.sh template</display-name>
         <description>This is a template for the solr.in.sh file</description>
         <value>
             # Licensed to the Apache Software Foundation (ASF) under one or more
