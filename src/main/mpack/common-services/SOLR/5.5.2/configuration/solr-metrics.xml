@@ -36,8 +36,8 @@
     <property>
         <name>solr_updatehandler_stats</name>
         <value>true</value>
-        <description>Enable Solr UPDATEHANDLER metrics</description>
-        <display-name>Solr UPDATEHANDLER stats</display-name>
+        <description>Enable Solr UpdateHandler metrics</description>
+        <display-name>Solr UpdateHandler stats</display-name>
         <value-attributes>
             <type>boolean</type>
         </value-attributes>
@@ -46,8 +46,8 @@
     <property>
         <name>solr_queryhandler_stats</name>
         <value>true</value>
-        <description>Enable Solr QUERyHANDLER metrics</description>
-        <display-name>Solr QUERyHANDLER stats</display-name>
+        <description>Enable Solr QueryHandler metrics</description>
+        <display-name>Solr QueryHandler stats</display-name>
         <value-attributes>
             <type>boolean</type>
         </value-attributes>
