@@ -80,7 +80,7 @@ def execute(configurations={}, parameters={}, host_name=None):
 
     current_time = int(time.time()) * 1000
     metric_period = int(configurations[SOLR_METRICS_PERIOD])
-    start_time = current_time - metric_period
+    start_time = current_time - (metric_period * 2)
 
     get_metrics_parameters = {
         "metricNames": metric_name,

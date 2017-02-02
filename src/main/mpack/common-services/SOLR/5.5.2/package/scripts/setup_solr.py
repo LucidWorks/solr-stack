@@ -44,11 +44,3 @@ def setup_solr():
             content=Template("solr.xml.j2"),
             owner=params.solr_config_user
     )
-
-    # Create a home directory for solr user
-    params.HdfsResource(
-            params.solr_hdfs_home_directory,
-            type="directory",
-            action="create_on_execute",
-            owner=params.solr_config_user
-    )
