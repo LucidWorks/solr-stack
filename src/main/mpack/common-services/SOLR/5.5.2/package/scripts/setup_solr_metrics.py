@@ -31,3 +31,10 @@ def setup_solr_metrics_support():
             owner=params.solr_config_user
     )
 
+    if params.security_enabled:
+        File(
+            format("{solr_metrics_kerberos_jaas_config}"),
+            content=Template("solr_metrics_jaas.conf.j2"),
+            owner=params.solr_config_user
+        )
+

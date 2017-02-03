@@ -90,6 +90,13 @@ class Solr(Script):
 
         if params.has_metric_collector and params.solr_enable_metrics:
             Logger.info('Starting Solr Metrics Sink.')
+
+            if params.security_enabled:
+                Execute(
+                    format('{kinit_path_local} -kt {solr_metrics_kerberos_keytab} {solr_metrics_kerberos_principal}'),
+                    user=params.solr_config_user
+                )
+
             Execute(
                     format('{solr_metrics_sink_bin}/solr.metrics.sh start'),
                     environment={
@@ -101,12 +108,20 @@ class Solr(Script):
                     user=params.solr_config_user
             )
 
+
     def stop(self, env):
         import params
         env.set_params(params)
 
         if params.has_metric_collector and params.solr_enable_metrics:
             Logger.info('Stopping Solr Metrics Sink.')
+
+            if params.security_enabled:
+                Execute(
+                    format('{kinit_path_local} -kt {solr_metrics_kerberos_keytab} {solr_metrics_kerberos_principal}'),
+                    user=params.solr_config_user
+                )
+
             Execute(
                     format('{solr_metrics_sink_bin}/solr.metrics.sh stop'),
                     environment={

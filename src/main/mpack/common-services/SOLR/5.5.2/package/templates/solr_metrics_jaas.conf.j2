@@ -1,0 +1,9 @@
+SolrJClient {
+  com.sun.security.auth.module.Krb5LoginModule required
+  useKeyTab=true
+  keyTab="{{solr_metrics_kerberos_keytab}}"
+  storeKey=true
+  useTicketCache=true
+  debug=true
+  principal="{{solr_metrics_kerberos_principal}}";
+};

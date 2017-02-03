@@ -128,11 +128,15 @@ solr_kerberos_keytab = map_solr_config.get('solr_keytab_path', '')
 solr_kerberos_principal = map_solr_config.get('solr_principal_name', '')
 solr_spnego_keytab = map_solr_config.get('solr_spnego_keytab_path', '')
 solr_spnego_principal = map_solr_config.get('solr_spnego_principal_name', '')
+solr_metrics_kerberos_jaas_config = format('{solr_config_conf_dir}/solr_metrics_jaas.conf')
+solr_metrics_kerberos_keytab = map_solr_config.get('solr_metrics_keytab_path', '')
+solr_metrics_kerberos_principal = map_solr_config.get('solr_metrics_principal_name', '')
 security_json = '/security.json'
 
 if security_enabled:
     solr_kerberos_principal = solr_kerberos_principal.replace('_HOST', hostname)
     solr_spnego_principal = solr_spnego_principal.replace('_HOST', hostname)
+    solr_metrics_kerberos_principal = solr_metrics_kerberos_principal.replace('_HOST', hostname)
 
 # Metrics
 solr_metrics_sink_dir = format('{solr_package_dir}/metrics')

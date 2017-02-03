@@ -14,8 +14,8 @@
             "https": "{{solr-config-env/solr_config_port}}",
             "https_property": "{{solr-ssl/solr_ssl_enable}}",
             "https_property_value": "true",
-            "kerberos_keytab": "{{solr-config-env/solr_keytab_path}}",
-            "kerberos_principal": "{{solr-config-env/solr_principal_name}}",
+            "kerberos_keytab": "{{solr-config-env/solr_spnego_keytab_path}}",
+            "kerberos_principal": "{{solr-config-env/solr_spnego_principal_name}}",
             "connection_timeout": 5.0,
             "default_port": 8983
           },

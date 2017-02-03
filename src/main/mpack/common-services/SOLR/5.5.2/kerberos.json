@@ -4,7 +4,13 @@
       "name": "SOLR",
       "identities": [
         {
-          "name": "/spnego"
+          "name": "/spnego",
+          "principal": {
+            "configuration": "solr-config-env/solr_spnego_principal_name"
+          },
+          "keytab": {
+            "configuration": "solr-config-env/solr_spnego_keytab_path"
+          }
         }
       ],
       "components": [
@@ -30,14 +36,24 @@
                 },
                 "configuration": "solr-config-env/solr_keytab_path"
               }
-            },
-            {
-              "name": "/spnego",
+            },{
+              "name": "solr_metrics_kerberos",
               "principal": {
-                "configuration": "solr-config-env/solr_spnego_principal_name"
+                "value": "solr_metrics/_HOST@${realm}",
+                "type": "service",
+                "configuration": "solr-config-env/solr_metrics_principal_name"
               },
               "keytab": {
-                "configuration": "solr-config-env/solr_spnego_keytab_path"
+                "file": "${keytab_dir}/solr.metrics.service.keytab",
+                "owner": {
+                  "name": "${solr-config-env/solr_config_user}",
+                  "access": "r"
+                },
+                "group": {
+                  "name": "${cluster-env/user_group}",
+                  "access": ""
+                },
+                "configuration": "solr-config-env/solr_metrics_keytab_path"
               }
             }
           ]

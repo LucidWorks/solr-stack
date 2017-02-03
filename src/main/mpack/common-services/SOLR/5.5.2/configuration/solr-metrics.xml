@@ -141,7 +141,7 @@
             solr.truststore.path={{solr_ssl_trust_store}}
             solr.truststore.password={{solr_ssl_trust_store_password}}
 
-            jaas.file={{solr_kerberos_jaas_config}}
+            jaas.file={{solr_metrics_kerberos_jaas_config}}
 
             # Metrics
             metrics.delay={{solr_metrics_delay}}
