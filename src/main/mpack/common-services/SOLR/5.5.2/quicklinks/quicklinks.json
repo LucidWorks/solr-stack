@@ -27,6 +27,21 @@
           "regex": "^(\\d+)$",
           "site": "solr-config-env"
         }
+      },
+      {
+        "name": "solr_banana_ui",
+        "label": "Banana UI",
+        "component_name": "SOLR_SERVER",
+        "url": "%@://%@:%@/solr/banana/index.html",
+        "requires_user_name": "false",
+        "port": {
+          "http_property": "solr_config_port",
+          "http_default_port": "8983",
+          "https_property": "solr_config_port",
+          "https_default_port": "8983",
+          "regex": "^(\\d+)$",
+          "site": "solr-config-env"
+        }
       }
     ]
   }
