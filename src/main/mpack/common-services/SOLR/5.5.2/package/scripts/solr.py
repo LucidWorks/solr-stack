@@ -10,7 +10,7 @@ from setup_solr_hdfs_support import setup_solr_hdfs_support
 from setup_solr_kerberos_auth import setup_solr_kerberos_auth, remove_solr_kerberos_auth
 from setup_solr_metrics import setup_solr_metrics_support
 from setup_solr_ssl_support import setup_solr_ssl_support, remove_solr_ssl_support
-from solr_utils import solr_status_validation, solr_port_validation, delete_write_lock_files
+from solr_utils import is_solr_running, solr_port_validation, delete_write_lock_files
 
 
 class Solr(Script):
@@ -54,38 +54,17 @@ class Solr(Script):
         if not solr_port_validation():
             exit(1)
 
-        if not solr_status_validation():
+        if is_solr_running():
+            Logger.info("Solr is running, it can not be started it again")
             exit(1)
 
         Logger.info("Starting Solr ... ")
-        # TODO use solr.in.sh to start args instead of here LWSHADOOP-648
-        start_command = format('{solr_config_bin_dir}/solr start -h {hostname}')
-
-        if params.solr_cloud_mode:
-            start_command += format(' -cloud -z {zookeeper_hosts}{solr_cloud_zk_directory}')
-        elif not params.solr_cloud_mode and params.security_enabled:
-            start_command += ' -DauthenticationPlugin=org.apache.solr.security.KerberosPlugin'
-
-        if params.solr_hdfs_enable:
-            start_command += format(
-                ' -Dsolr.directoryFactory=HdfsDirectoryFactory -Dsolr.lock.type=hdfs')
-            start_command += format(' -Dsolr.hdfs.home={default_fs}{solr_hdfs_directory}')
-            start_command += format(' -Dsolr.hdfs.confdir={hadoop_conf_dir}')
-
-            if params.security_enabled:
-                start_command += format(' -Dsolr.hdfs.security.kerberos.enabled=true')
-                start_command += format(
-                    ' -Dsolr.hdfs.security.kerberos.keytabfile={solr_kerberos_keytab}')
-                start_command += format(
-                    ' -Dsolr.hdfs.security.kerberos.principal={solr_kerberos_principal}')
-
-        start_command += format(
-            ' -p {solr_config_port} -m {solr_config_memory} >> {solr_config_service_log_file} 2>&1')
+        start_command = format('{solr_config_bin_dir}/solr start >> {solr_config_service_log_file} 2>&1')
 
         Execute(
-                start_command,
-                environment={'JAVA_HOME': params.java64_home},
-                user=params.solr_config_user
+            start_command,
+            environment={'JAVA_HOME': params.java64_home},
+            user=params.solr_config_user
         )
 
         if params.has_metric_collector and params.solr_enable_metrics:
@@ -98,16 +77,15 @@ class Solr(Script):
                 )
 
             Execute(
-                    format('{solr_metrics_sink_bin}/solr.metrics.sh start'),
-                    environment={
-                        'JAVA_HOME': params.java64_home,
-                        'SOLR_METRICS_PID_DIR': params.solr_metrics_config_pid_dir,
-                        'SOLR_METRICS_LOGS': params.solr_metrics_config_log_dir,
-                        'SOLR_METRIC_CONF': params.solr_metrics_config_conf_dir
-                    },
-                    user=params.solr_config_user
+                format('{solr_metrics_sink_bin}/solr.metrics.sh start'),
+                environment={
+                    'JAVA_HOME': params.java64_home,
+                    'SOLR_METRICS_PID_DIR': params.solr_metrics_config_pid_dir,
+                    'SOLR_METRICS_LOGS': params.solr_metrics_config_log_dir,
+                    'SOLR_METRIC_CONF': params.solr_metrics_config_conf_dir
+                },
+                user=params.solr_config_user
             )
-
 
     def stop(self, env):
         import params
@@ -123,27 +101,32 @@ class Solr(Script):
                 )
 
             Execute(
-                    format('{solr_metrics_sink_bin}/solr.metrics.sh stop'),
-                    environment={
-                        'JAVA_HOME': params.java64_home,
-                        'SOLR_METRICS_PID_DIR': params.solr_metrics_config_pid_dir,
-                        'SOLR_METRICS_LOGS': params.solr_metrics_config_log_dir,
-                        'SOLR_METRIC_CONF': params.solr_metrics_config_conf_dir
-                    },
-                    ignore_failures=True,
-                    user=params.solr_config_user
+                format('{solr_metrics_sink_bin}/solr.metrics.sh stop'),
+                environment={
+                    'JAVA_HOME': params.java64_home,
+                    'SOLR_METRICS_PID_DIR': params.solr_metrics_config_pid_dir,
+                    'SOLR_METRICS_LOGS': params.solr_metrics_config_log_dir,
+                    'SOLR_METRIC_CONF': params.solr_metrics_config_conf_dir
+                },
+                ignore_failures=True,
+                user=params.solr_config_user
             )
 
+        if not is_solr_running():
+            Logger.info("Solr is not running, it can not be stopped it again")
+            return
+
         Execute(
-                format(
-                    '{solr_config_bin_dir}/solr stop -all >> {solr_config_service_log_file} 2>&1'),
-                environment={'JAVA_HOME': params.java64_home},
-                user=params.solr_config_user
+            format(
+                '{solr_config_bin_dir}/solr stop -all >> {solr_config_service_log_file} 2>&1'),
+            environment={'JAVA_HOME': params.java64_home},
+            user=params.solr_config_user
         )
 
-        File(params.solr_config_pid_file,
-             action="delete"
-             )
+        File(
+            params.solr_config_pid_file,
+            action="delete"
+        )
 
     def status(self, env):
         import status_params
