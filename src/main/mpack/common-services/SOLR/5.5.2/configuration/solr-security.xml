@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<configuration supports_final="false" supports_adding_forbidden="true">
+
+  <property>
+    <name>solr_security_json</name>
+    <display-name>Solr security.json</display-name>
+    <description>The security.json will be uploaded to Zookeeper.
+      Note: if a security.json is already store in Zookeeper, this security.json will not overwrite it.
+    </description>
+    <value>
+      {
+        "authentication": {
+          "class": "org.apache.solr.security.KerberosPlugin"
+        }
+      }
+    </value>
+    <value-attributes>
+      <type>content</type>
+      <show-property-name>false</show-property-name>
+    </value-attributes>
+  </property>
+</configuration>
