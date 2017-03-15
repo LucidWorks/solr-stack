@@ -56,6 +56,7 @@
                 <config-type>solr-log4j</config-type>
                 <config-type>solr-ssl</config-type>
                 <config-type>example-collection</config-type>
+                <config-type>solr-security</config-type>
                 <config-type>solr-metrics</config-type>
             </configuration-dependencies>
             <restartRequiredAfterChange>true</restartRequiredAfterChange>

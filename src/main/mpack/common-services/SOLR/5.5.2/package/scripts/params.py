@@ -134,6 +134,8 @@ solr_metrics_kerberos_jaas_config = format('{solr_config_conf_dir}/solr_metrics_
 solr_metrics_kerberos_keytab = map_solr_config.get('solr_metrics_keytab_path', '')
 solr_metrics_kerberos_principal = map_solr_config.get('solr_metrics_principal_name', '')
 security_json = '/security.json'
+map_solr_kerberos = config['configurations']['solr-kerberos']
+solr_security_json = map_solr_kerberos.get('solr_security_json', '')
 
 if security_enabled:
     solr_kerberos_principal = solr_kerberos_principal.replace('_HOST', hostname)
