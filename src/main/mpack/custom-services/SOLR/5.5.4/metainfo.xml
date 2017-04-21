@@ -18,8 +18,8 @@
     <services>
         <service>
             <name>SOLR</name>
-            <version>5.5.2</version>
-            <extends>common-services/SOLR/5.5.2</extends>
+            <version>5.5.4</version>
+            <extends>common-services/SOLR/5.5.4</extends>
         </service>
     </services>
 </metainfo>

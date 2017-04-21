@@ -180,7 +180,7 @@ if has_metric_collector:
             "/configurations/ams-ssl-client/ssl.client.truststore.password", "")
 
 solr_metrics = config['configurations']['solr-metrics']
-solr_enable_metrics = bool(solr_metrics['solr_enable_metrics'])
+solr_enable_metrics = bool(solr_metrics.get('solr_enable_metrics', False))
 
 solr_metrics_delay = solr_metrics['solr_metrics_delay']
 solr_metrics_period = solr_metrics['solr_metrics_period']

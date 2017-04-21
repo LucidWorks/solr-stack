@@ -13,7 +13,7 @@ task wrapper(type: Wrapper) {
 
 ext.src = 'src/main/mpack/'
 ext.repostemplate = 'src/main/template/repos/repoinfo.xml'
-ext.reposinfo552 = 'custom-services/SOLR/5.5.2/repos/'
+ext.reposinfo554 = 'custom-services/SOLR/5.5.4/repos/'
 
 
 distributions {
@@ -27,10 +27,10 @@ distributions {
         line.replace("{VERSION}", "${version}")
       }
 
-      into(reposinfo552) {
+      into(reposinfo554) {
         from { repostemplate }
         filter { String line ->
-          line.replace("{REPOID}", "${repoid552}")
+          line.replace("{REPOID}", "${repoid554}")
         }
       }
     }
