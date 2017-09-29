@@ -18,7 +18,7 @@
                     <displayName>Solr</displayName>
                     <category>MASTER</category>
                     <cardinality>1+</cardinality>
-                    <versionAdvertised>true</versionAdvertised>
+                    <versionAdvertised>false</versionAdvertised>
                     <commandScript>
                         <script>scripts/solr.py</script>
                         <scriptType>PYTHON</scriptType>

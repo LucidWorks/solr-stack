@@ -1,11 +1,8 @@
 {
   "id": null,
-  "title": "Solr 6.5.0 - Cores",
-  "originalTitle": "Solr 6.5.0 - Cores",
-  "tags": [
-    "solr",
-    "solr-6.5.0"
-  ],
+  "title": "Solr 6.6.1 - Cores",
+  "originalTitle": "Solr 6.6.1 - Cores",
+  "tags": ["solr-6.6.1", "solr"],
   "style": "dark",
   "timezone": "browser",
   "editable": true,
@@ -21,7 +18,8 @@
           "content": "<h4 align=\"center\">Solr Cores Dashboard</h4>",
           "editable": true,
           "error": false,
-          "id": 1,
+          "height": "25px",
+          "id": 2,
           "isNew": true,
           "links": [],
           "mode": "html",
@@ -55,15 +53,19 @@
             "threshold1": null,
             "threshold1Color": "rgba(216, 200, 27, 0.27)",
             "threshold2": null,
-            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+            "threshold2Color": "rgba(234, 112, 112, 0.22)",
+            "thresholdLine": false
           },
-          "id": 2,
+          "height": "",
+          "id": 4,
           "isNew": true,
           "legend": {
+            "alignAsTable": false,
             "avg": false,
             "current": false,
             "max": false,
             "min": false,
+            "rightSide": false,
             "show": true,
             "total": false,
             "values": false
@@ -83,9 +85,12 @@
           "targets": [
             {
               "aggregator": "none",
+              "alias": "adds",
               "app": "solr-core-app",
               "downsampleAggregator": "avg",
               "errors": {},
+              "hosts": "",
+              "metric": "solr.core.gauge.update.updateHandler.adds",
               "precision": "default",
               "refId": "A",
               "seriesAggregator": "none",
@@ -104,152 +109,13 @@
           "x-axis": true,
           "y-axis": true,
           "y_formats": [
-            "short",
-            "short"
+            "none",
+            "none"
           ]
         },
         {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": null,
-          "editable": true,
-          "error": false,
-          "fill": 1,
-          "grid": {
-            "leftLogBase": 1,
-            "leftMax": null,
-            "leftMin": null,
-            "rightLogBase": 1,
-            "rightMax": null,
-            "rightMin": null,
-            "threshold1": null,
-            "threshold1Color": "rgba(216, 200, 27, 0.27)",
-            "threshold2": null,
-            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          "aliasColors": {
           },
-          "id": 3,
-          "isNew": true,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 2,
-          "links": [],
-          "nullPointMode": "connected",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "span": 6,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "aggregator": "avg",
-              "app": "solr-core-app",
-              "downsampleAggregator": "avg",
-              "errors": {},
-              "precision": "default",
-              "refId": "A",
-              "seriesAggregator": "none",
-              "templatedHost": "",
-              "transform": "none"
-            }
-          ],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Deletes",
-          "tooltip": {
-            "shared": true,
-            "value_type": "cumulative"
-          },
-          "type": "graph",
-          "x-axis": true,
-          "y-axis": true,
-          "y_formats": [
-            "short",
-            "short"
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": null,
-          "editable": true,
-          "error": false,
-          "fill": 1,
-          "grid": {
-            "leftLogBase": 1,
-            "leftMax": null,
-            "leftMin": null,
-            "rightLogBase": 1,
-            "rightMax": null,
-            "rightMin": null,
-            "threshold1": null,
-            "threshold1Color": "rgba(216, 200, 27, 0.27)",
-            "threshold2": null,
-            "threshold2Color": "rgba(234, 112, 112, 0.22)"
-          },
-          "id": 4,
-          "isNew": true,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 2,
-          "links": [],
-          "nullPointMode": "connected",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "span": 6,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "aggregator": "avg",
-              "app": "solr-core-app",
-              "downsampleAggregator": "avg",
-              "errors": {},
-              "precision": "default",
-              "refId": "A",
-              "seriesAggregator": "none",
-              "templatedHost": "",
-              "transform": "none"
-            }
-          ],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Errors",
-          "tooltip": {
-            "shared": true,
-            "value_type": "cumulative"
-          },
-          "type": "graph",
-          "x-axis": true,
-          "y-axis": true,
-          "y_formats": [
-            "short",
-            "short"
-          ]
-        },
-        {
-          "aliasColors": {},
           "bars": false,
           "datasource": null,
           "editable": true,
@@ -292,12 +158,27 @@
           "steppedLine": false,
           "targets": [
             {
-              "aggregator": "avg",
+              "aggregator": "none",
+              "alias": "deletesById",
               "app": "solr-core-app",
               "downsampleAggregator": "avg",
               "errors": {},
+              "metric": "solr.core.gauge.update.updateHandler.deletesById",
               "precision": "default",
               "refId": "A",
+              "seriesAggregator": "none",
+              "templatedHost": "",
+              "transform": "none"
+            },
+            {
+              "aggregator": "none",
+              "alias": "deletesByQuery",
+              "app": "solr-core-app",
+              "downsampleAggregator": "avg",
+              "errors": {},
+              "metric": "solr.core.gauge.update.updateHandler.deletesByQuery",
+              "precision": "default",
+              "refId": "B",
               "seriesAggregator": "none",
               "templatedHost": "",
               "transform": "none"
@@ -305,7 +186,7 @@
           ],
           "timeFrom": null,
           "timeShift": null,
-          "title": "Pending Documents",
+          "title": "Deletes",
           "tooltip": {
             "shared": true,
             "value_type": "cumulative"
@@ -314,21 +195,13 @@
           "x-axis": true,
           "y-axis": true,
           "y_formats": [
-            "short",
-            "short"
+            "none",
+            "none"
           ]
-        }
-      ],
-      "showTitle": true,
-      "title": "INDEXING"
-    },
-    {
-      "collapse": false,
-      "editable": true,
-      "height": "250px",
-      "panels": [
+        },
         {
-          "aliasColors": {},
+          "aliasColors": {
+          },
           "bars": false,
           "datasource": null,
           "editable": true,
@@ -346,7 +219,6 @@
             "threshold2": null,
             "threshold2Color": "rgba(234, 112, 112, 0.22)"
           },
-          "height": "350px",
           "id": 6,
           "isNew": true,
           "legend": {
@@ -373,60 +245,21 @@
           "targets": [
             {
               "aggregator": "none",
+              "alias": "errors",
+              "app": "solr-core-app",
               "downsampleAggregator": "avg",
               "errors": {},
+              "metric": "solr.core.gauge.update.updateHandler.errors",
               "precision": "default",
               "refId": "A",
               "seriesAggregator": "none",
               "templatedHost": "",
-              "transform": "none",
-              "app": "solr-core-app",
-              "metric": "solr.core.timer.query.select.requesttimes.count",
-              "alias": "requests"
-            },
-            {
-              "refId": "B",
-              "errors": {},
-              "aggregator": "none",
-              "downsampleAggregator": "avg",
-              "transform": "none",
-              "precision": "default",
-              "seriesAggregator": "none",
-              "templatedHost": "",
-              "app": "solr-core-app",
-              "alias": "avgRequestsPerSecond",
-              "metric": "solr.core.timer.query.select.requesttimes.meanRate"
-            },
-            {
-              "refId": "C",
-              "errors": {},
-              "aggregator": "none",
-              "downsampleAggregator": "avg",
-              "transform": "none",
-              "precision": "default",
-              "seriesAggregator": "none",
-              "templatedHost": "",
-              "app": "solr-core-app",
-              "alias": "5minRateReqsPerSecond",
-              "metric": "solr.core.timer.query.select.requesttimes.5minRate"
-            },
-            {
-              "refId": "D",
-              "errors": {},
-              "aggregator": "none",
-              "downsampleAggregator": "avg",
-              "transform": "none",
-              "precision": "default",
-              "seriesAggregator": "none",
-              "templatedHost": "",
-              "app": "solr-core-app",
-              "alias": "15minRateReqsPerSecond",
-              "metric": "solr.core.timer.query.select.requesttimes.15minRate"
+              "transform": "none"
             }
           ],
           "timeFrom": null,
           "timeShift": null,
-          "title": "Select Handler Requests",
+          "title": "Errors",
           "tooltip": {
             "shared": true,
             "value_type": "cumulative"
@@ -435,12 +268,13 @@
           "x-axis": true,
           "y-axis": true,
           "y_formats": [
-            "short",
-            "short"
+            "none",
+            "none"
           ]
         },
         {
-          "aliasColors": {},
+          "aliasColors": {
+          },
           "bars": false,
           "datasource": null,
           "editable": true,
@@ -458,7 +292,6 @@
             "threshold2": null,
             "threshold2Color": "rgba(234, 112, 112, 0.22)"
           },
-          "height": "350px",
           "id": 7,
           "isNew": true,
           "legend": {
@@ -485,86 +318,21 @@
           "targets": [
             {
               "aggregator": "none",
+              "alias": "docsPending",
+              "app": "solr-core-app",
               "downsampleAggregator": "avg",
               "errors": {},
+              "metric": "solr.core.gauge.update.updateHandler.docsPending",
               "precision": "default",
               "refId": "A",
               "seriesAggregator": "none",
               "templatedHost": "",
-              "transform": "none",
-              "app": "solr-core-app",
-              "alias": "avgTimePerRequest",
-              "metric": "solr.core.timer.query.select.requesttimes.mean_ms"
-            },
-            {
-              "refId": "B",
-              "errors": {},
-              "aggregator": "none",
-              "downsampleAggregator": "avg",
-              "transform": "none",
-              "precision": "default",
-              "seriesAggregator": "none",
-              "templatedHost": "",
-              "app": "solr-core-app",
-              "alias": "medianRequestTime",
-              "metric": "solr.core.timer.query.select.requesttimes.median_ms"
-            },
-            {
-              "refId": "C",
-              "errors": {},
-              "aggregator": "none",
-              "downsampleAggregator": "avg",
-              "transform": "none",
-              "precision": "default",
-              "seriesAggregator": "none",
-              "templatedHost": "",
-              "app": "solr-core-app",
-              "alias": "75thPcRequestTime",
-              "metric": "solr.core.timer.query.select.requesttimes.p75_ms"
-            },
-            {
-              "refId": "D",
-              "errors": {},
-              "aggregator": "none",
-              "downsampleAggregator": "avg",
-              "transform": "none",
-              "precision": "default",
-              "seriesAggregator": "none",
-              "templatedHost": "",
-              "app": "solr-core-app",
-              "alias": "95thPcRequestTime",
-              "metric": "solr.core.timer.query.select.requesttimes.p95_ms"
-            },
-            {
-              "refId": "E",
-              "errors": {},
-              "aggregator": "none",
-              "downsampleAggregator": "avg",
-              "transform": "none",
-              "precision": "default",
-              "seriesAggregator": "none",
-              "templatedHost": "",
-              "app": "solr-core-app",
-              "alias": "99thPcRequestTime",
-              "metric": "solr.core.timer.query.select.requesttimes.p99_ms"
-            },
-            {
-              "refId": "F",
-              "errors": {},
-              "aggregator": "none",
-              "downsampleAggregator": "avg",
-              "transform": "none",
-              "precision": "default",
-              "seriesAggregator": "none",
-              "templatedHost": "",
-              "app": "solr-core-app",
-              "alias": "999thPcRequestTime",
-              "metric": "solr.core.timer.query.select.requesttimes.p999_ms"
+              "transform": "none"
             }
           ],
           "timeFrom": null,
           "timeShift": null,
-          "title": "Time Per Select Handler Requests",
+          "title": "Pending Documents",
           "tooltip": {
             "shared": true,
             "value_type": "cumulative"
@@ -575,6 +343,127 @@
           "y_formats": [
             "short",
             "short"
+          ]
+        }
+      ],
+      "showTitle": true,
+      "title": "Indexing"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": null,
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": null,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "height": "350px",
+          "id": 3,
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "aggregator": "none",
+              "alias": "requests",
+              "app": "solr-core-app",
+              "downsampleAggregator": "avg",
+              "errors": {},
+              "metric": "solr.core.counter.query.select.requests",
+              "precision": "default",
+              "refId": "A",
+              "seriesAggregator": "none",
+              "templatedHost": "",
+              "transform": "none"
+            },
+            {
+              "aggregator": "avg",
+              "alias": "mean_ms",
+              "app": "solr-core-app",
+              "downsampleAggregator": "avg",
+              "errors": {},
+              "metric": "solr.core.timer.query.select.requestTimes.mean_ms",
+              "precision": "default",
+              "refId": "B",
+              "seriesAggregator": "none",
+              "templatedHost": "",
+              "transform": "none"
+            },
+            {
+              "aggregator": "avg",
+              "alias": "5minRate",
+              "app": "solr-core-app",
+              "downsampleAggregator": "avg",
+              "errors": {},
+              "metric": "solr.core.timer.query.select.requestTimes.5minRate",
+              "precision": "default",
+              "refId": "C",
+              "seriesAggregator": "none",
+              "templatedHost": "",
+              "transform": "none"
+            },
+            {
+              "aggregator": "avg",
+              "alias": "15minRate",
+              "app": "solr-core-app",
+              "downsampleAggregator": "avg",
+              "errors": {},
+              "metric": "solr.core.timer.query.select.requestTimes.15minRate",
+              "precision": "default",
+              "refId": "D",
+              "seriesAggregator": "none",
+              "templatedHost": "",
+              "transform": "none"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Select Handler Requests",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "none",
+            "none"
           ]
         },
         {
@@ -623,60 +512,86 @@
           "targets": [
             {
               "aggregator": "none",
+              "alias": "meanRate",
               "app": "solr-core-app",
               "downsampleAggregator": "avg",
               "errors": {},
+              "metric": "solr.core.timer.query.select.requestTimes.meanRate",
               "precision": "default",
               "refId": "A",
               "seriesAggregator": "none",
               "templatedHost": "",
-              "transform": "none",
-              "alias": "browse.requests",
-              "metric": "solr.core.timer.query.browse.requesttimes.count"
+              "transform": "none"
             },
             {
+              "aggregator": "none",
+              "alias": "median_ms",
+              "app": "solr-core-app",
+              "downsampleAggregator": "avg",
+              "errors": {},
+              "metric": "solr.core.timer.query.select.requestTimes.median_ms",
+              "precision": "default",
               "refId": "B",
-              "errors": {},
-              "aggregator": "none",
-              "downsampleAggregator": "avg",
-              "transform": "none",
-              "precision": "default",
               "seriesAggregator": "none",
-              "app": "solr-core-app",
               "templatedHost": "",
-              "alias": "export.requests",
-              "metric": "solr.core.timer.query.export.requesttimes.count"
+              "transform": "none"
             },
             {
+              "aggregator": "none",
+              "alias": "p75_ms",
+              "app": "solr-core-app",
+              "downsampleAggregator": "avg",
+              "errors": {},
+              "metric": "solr.core.timer.query.select.requestTimes.p75_ms",
+              "precision": "default",
               "refId": "C",
-              "errors": {},
-              "aggregator": "none",
-              "downsampleAggregator": "avg",
-              "transform": "none",
-              "precision": "default",
               "seriesAggregator": "none",
               "templatedHost": "",
-              "app": "solr-core-app",
-              "alias": "get.requests",
-              "metric": "solr.core.timer.query.get.requesttimes.count"
+              "transform": "none"
             },
             {
-              "refId": "D",
-              "errors": {},
               "aggregator": "none",
+              "alias": "p95_ms",
+              "app": "solr-core-app",
               "downsampleAggregator": "avg",
-              "transform": "none",
+              "errors": {},
+              "metric": "solr.core.timer.query.select.requestTimes.p95_ms",
               "precision": "default",
+              "refId": "D",
               "seriesAggregator": "none",
               "templatedHost": "",
+              "transform": "none"
+            },
+            {
+              "aggregator": "none",
+              "alias": "p99_ms",
               "app": "solr-core-app",
-              "alias": "query.requests",
-              "metric": "solr.core.timer.query.query.requesttimes.count"
+              "downsampleAggregator": "avg",
+              "errors": {},
+              "metric": "solr.core.timer.query.select.requestTimes.p99_ms",
+              "precision": "default",
+              "refId": "E",
+              "seriesAggregator": "none",
+              "templatedHost": "",
+              "transform": "none"
+            },
+            {
+              "aggregator": "none",
+              "alias": "p999_ms",
+              "app": "solr-core-app",
+              "downsampleAggregator": "avg",
+              "errors": {},
+              "metric": "solr.core.timer.query.select.requestTimes.p999_ms",
+              "precision": "default",
+              "refId": "F",
+              "seriesAggregator": "none",
+              "templatedHost": "",
+              "transform": "none"
             }
           ],
           "timeFrom": null,
           "timeShift": null,
-          "title": "Other Handler Requests",
+          "title": "Time Per Select Handler Request",
           "tooltip": {
             "shared": true,
             "value_type": "cumulative"
@@ -735,60 +650,60 @@
           "targets": [
             {
               "aggregator": "none",
+              "alias": "browse.requests",
               "app": "solr-core-app",
               "downsampleAggregator": "avg",
               "errors": {},
+              "metric": "solr.core.counter.query.browse.requests",
               "precision": "default",
               "refId": "A",
               "seriesAggregator": "none",
               "templatedHost": "",
-              "transform": "none",
-              "metric": "solr.core.timer.query.browse.requesttimes.meanRate",
-              "alias": "solr.admin.mbeans.queryHandler.browse.avgTimePerRequest"
+              "transform": "none"
             },
             {
+              "aggregator": "none",
+              "alias": "export.requests",
+              "app": "solr-core-app",
+              "downsampleAggregator": "avg",
+              "errors": {},
+              "metric": "solr.core.counter.query.export.requests",
+              "precision": "default",
               "refId": "B",
-              "errors": {},
-              "aggregator": "none",
-              "downsampleAggregator": "avg",
-              "transform": "none",
-              "precision": "default",
               "seriesAggregator": "none",
               "templatedHost": "",
-              "metric": "solr.core.timer.query.export.requesttimes.meanRate",
-              "app": "solr-core-app",
-              "alias": "solr.admin.mbeans.queryHandler.export.avgTimePerRequest"
+              "transform": "none"
             },
             {
+              "aggregator": "none",
+              "alias": "get.requests",
+              "app": "solr-core-app",
+              "downsampleAggregator": "avg",
+              "errors": {},
+              "metric": "solr.core.counter.query.get.requests",
+              "precision": "default",
               "refId": "C",
-              "errors": {},
-              "aggregator": "none",
-              "downsampleAggregator": "avg",
-              "transform": "none",
-              "precision": "default",
               "seriesAggregator": "none",
               "templatedHost": "",
-              "metric": "solr.core.timer.query.get.requesttimes.meanRate",
-              "app": "solr-core-app",
-              "alias": "solr.admin.mbeans.queryHandler.get.avgTimePerRequest"
+              "transform": "none"
             },
             {
-              "refId": "D",
-              "errors": {},
               "aggregator": "none",
+              "alias": "query.requests",
+              "app": "solr-core-app",
               "downsampleAggregator": "avg",
-              "transform": "none",
+              "errors": {},
+              "metric": "solr.core.counter.query.query.requests",
               "precision": "default",
+              "refId": "D",
               "seriesAggregator": "none",
               "templatedHost": "",
-              "metric": "solr.core.timer.query.query.requesttimes.meanRate",
-              "app": "solr-core-app",
-              "alias": "solr.admin.mbeans.queryHandler.query.avgTimePerRequest"
+              "transform": "none"
             }
           ],
           "timeFrom": null,
           "timeShift": null,
-          "title": "Average Time for Other Handlers",
+          "title": "Other Handler Requests",
           "tooltip": {
             "shared": true,
             "value_type": "cumulative"
@@ -800,16 +715,7 @@
             "short",
             "short"
           ]
-        }
-      ],
-      "showTitle": true,
-      "title": "QUERIES"
-    },
-    {
-      "collapse": false,
-      "editable": true,
-      "height": "250px",
-      "panels": [
+        },
         {
           "aliasColors": {},
           "bars": false,
@@ -829,6 +735,7 @@
             "threshold2": null,
             "threshold2Color": "rgba(234, 112, 112, 0.22)"
           },
+          "height": "350px",
           "id": 10,
           "isNew": true,
           "legend": {
@@ -849,17 +756,58 @@
           "points": false,
           "renderer": "flot",
           "seriesOverrides": [],
-          "span": 4,
+          "span": 6,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
-              "aggregator": "avg",
+              "aggregator": "none",
+              "alias": "browse.meanRate",
               "app": "solr-core-app",
               "downsampleAggregator": "avg",
               "errors": {},
+              "metric": "solr.core.timer.query.browse.requestTimes.meanRate",
               "precision": "default",
               "refId": "A",
+              "seriesAggregator": "none",
+              "templatedHost": "",
+              "transform": "none"
+            },
+            {
+              "aggregator": "none",
+              "alias": "export.meanRate",
+              "app": "solr-core-app",
+              "downsampleAggregator": "avg",
+              "errors": {},
+              "metric": "solr.core.timer.query.export.requestTimes.meanRate",
+              "precision": "default",
+              "refId": "B",
+              "seriesAggregator": "none",
+              "templatedHost": "",
+              "transform": "none"
+            },
+            {
+              "aggregator": "none",
+              "alias": "get.meanRate",
+              "app": "solr-core-app",
+              "downsampleAggregator": "avg",
+              "errors": {},
+              "metric": "solr.core.timer.query.get.requestTimes.meanRate",
+              "precision": "default",
+              "refId": "C",
+              "seriesAggregator": "none",
+              "templatedHost": "",
+              "transform": "none"
+            },
+            {
+              "aggregator": "none",
+              "alias": "query.meanRate",
+              "app": "solr-core-app",
+              "downsampleAggregator": "avg",
+              "errors": {},
+              "metric": "solr.core.timer.query.query.requestTimes.meanRate",
+              "precision": "default",
+              "refId": "D",
               "seriesAggregator": "none",
               "templatedHost": "",
               "transform": "none"
@@ -867,7 +815,7 @@
           ],
           "timeFrom": null,
           "timeShift": null,
-          "title": "Filter Cache Hit Ratio",
+          "title": "Average Time for Other Handlers",
           "tooltip": {
             "shared": true,
             "value_type": "cumulative"
@@ -879,7 +827,16 @@
             "short",
             "short"
           ]
-        },
+        }
+      ],
+      "showTitle": true,
+      "title": "Queries"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
         {
           "aliasColors": {},
           "bars": false,
@@ -924,10 +881,12 @@
           "steppedLine": false,
           "targets": [
             {
-              "aggregator": "avg",
+              "aggregator": "none",
+              "alias": "hitratio",
               "app": "solr-core-app",
               "downsampleAggregator": "avg",
               "errors": {},
+              "metric": "solr.core.gauge.cache.searcher.filterCache.hitratio",
               "precision": "default",
               "refId": "A",
               "seriesAggregator": "none",
@@ -937,7 +896,7 @@
           ],
           "timeFrom": null,
           "timeShift": null,
-          "title": "Filter Cache Size",
+          "title": "Filter Cache Hit Ratio",
           "tooltip": {
             "shared": true,
             "value_type": "cumulative"
@@ -951,7 +910,8 @@
           ]
         },
         {
-          "aliasColors": {},
+          "aliasColors": {
+          },
           "bars": false,
           "datasource": null,
           "editable": true,
@@ -994,12 +954,12 @@
           "steppedLine": false,
           "targets": [
             {
-              "aggregator": "avg",
+              "aggregator": "none",
+              "alias": "size",
               "app": "solr-core-app",
               "downsampleAggregator": "avg",
               "errors": {},
-              "hosts": "",
-              "metric": "",
+              "metric": "solr.core.gauge.cache.searcher.filterCache.size",
               "precision": "default",
               "refId": "A",
               "seriesAggregator": "none",
@@ -1009,7 +969,7 @@
           ],
           "timeFrom": null,
           "timeShift": null,
-          "title": "Filter Cache Warmup Time",
+          "title": "Filter Cache Size",
           "tooltip": {
             "shared": true,
             "value_type": "cumulative"
@@ -1023,7 +983,8 @@
           ]
         },
         {
-          "aliasColors": {},
+          "aliasColors": {
+          },
           "bars": false,
           "datasource": null,
           "editable": true,
@@ -1066,9 +1027,12 @@
           "steppedLine": false,
           "targets": [
             {
-              "aggregator": "avg",
+              "aggregator": "none",
+              "alias": "warmupTime",
+              "app": "solr-core-app",
               "downsampleAggregator": "avg",
               "errors": {},
+              "metric": "solr.core.gauge.cache.searcher.filterCache.warmupTime",
               "precision": "default",
               "refId": "A",
               "seriesAggregator": "none",
@@ -1078,7 +1042,7 @@
           ],
           "timeFrom": null,
           "timeShift": null,
-          "title": "Document Cache Hit Ratio",
+          "title": "Filter Cache Warmup Time",
           "tooltip": {
             "shared": true,
             "value_type": "cumulative"
@@ -1092,7 +1056,8 @@
           ]
         },
         {
-          "aliasColors": {},
+          "aliasColors": {
+          },
           "bars": false,
           "datasource": null,
           "editable": true,
@@ -1135,9 +1100,12 @@
           "steppedLine": false,
           "targets": [
             {
-              "aggregator": "avg",
+              "aggregator": "none",
+              "alias": "hitratio",
+              "app": "solr-core-app",
               "downsampleAggregator": "avg",
               "errors": {},
+              "metric": "solr.core.gauge.cache.searcher.documentCache.hitratio",
               "precision": "default",
               "refId": "A",
               "seriesAggregator": "none",
@@ -1147,7 +1115,7 @@
           ],
           "timeFrom": null,
           "timeShift": null,
-          "title": "Document Cache Size",
+          "title": "Document Cache Hit Ratio",
           "tooltip": {
             "shared": true,
             "value_type": "cumulative"
@@ -1161,7 +1129,8 @@
           ]
         },
         {
-          "aliasColors": {},
+          "aliasColors": {
+          },
           "bars": false,
           "datasource": null,
           "editable": true,
@@ -1205,8 +1174,11 @@
           "targets": [
             {
               "aggregator": "avg",
+              "alias": "size",
+              "app": "solr-core-app",
               "downsampleAggregator": "avg",
               "errors": {},
+              "metric": "solr.core.gauge.cache.searcher.documentCache.size",
               "precision": "default",
               "refId": "A",
               "seriesAggregator": "none",
@@ -1216,7 +1188,7 @@
           ],
           "timeFrom": null,
           "timeShift": null,
-          "title": "Document Cache Warmup Time",
+          "title": "Document Cache Size",
           "tooltip": {
             "shared": true,
             "value_type": "cumulative"
@@ -1230,7 +1202,8 @@
           ]
         },
         {
-          "aliasColors": {},
+          "aliasColors": {
+          },
           "bars": false,
           "datasource": null,
           "editable": true,
@@ -1273,9 +1246,12 @@
           "steppedLine": false,
           "targets": [
             {
-              "aggregator": "avg",
+              "aggregator": "none",
+              "alias": "warmupTime",
+              "app": "solr-core-app",
               "downsampleAggregator": "avg",
               "errors": {},
+              "metric": "solr.core.gauge.cache.searcher.documentCache.warmupTime",
               "precision": "default",
               "refId": "A",
               "seriesAggregator": "none",
@@ -1285,7 +1261,7 @@
           ],
           "timeFrom": null,
           "timeShift": null,
-          "title": "Query Result Cache Hit Ratio",
+          "title": "Document Cache Warmup Time",
           "tooltip": {
             "shared": true,
             "value_type": "cumulative"
@@ -1299,7 +1275,8 @@
           ]
         },
         {
-          "aliasColors": {},
+          "aliasColors": {
+          },
           "bars": false,
           "datasource": null,
           "editable": true,
@@ -1342,9 +1319,12 @@
           "steppedLine": false,
           "targets": [
             {
-              "aggregator": "avg",
+              "aggregator": "none",
+              "alias": "hitratio",
+              "app": "solr-core-app",
               "downsampleAggregator": "avg",
               "errors": {},
+              "metric": "solr.core.gauge.cache.searcher.queryResultCache.hitratio",
               "precision": "default",
               "refId": "A",
               "seriesAggregator": "none",
@@ -1354,7 +1334,7 @@
           ],
           "timeFrom": null,
           "timeShift": null,
-          "title": "Query Result Cache Size",
+          "title": "Query Result Cache Hit Ratio",
           "tooltip": {
             "shared": true,
             "value_type": "cumulative"
@@ -1368,7 +1348,8 @@
           ]
         },
         {
-          "aliasColors": {},
+          "aliasColors": {
+          },
           "bars": false,
           "datasource": null,
           "editable": true,
@@ -1411,9 +1392,85 @@
           "steppedLine": false,
           "targets": [
             {
-              "aggregator": "avg",
+              "aggregator": "none",
+              "alias": "size",
+              "app": "solr-core-app",
               "downsampleAggregator": "avg",
               "errors": {},
+              "metric": "solr.core.gauge.cache.searcher.queryResultCache.size",
+              "precision": "default",
+              "refId": "A",
+              "seriesAggregator": "none",
+              "templatedHost": "",
+              "transform": "none"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Query Result Cache Size",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "short",
+            "short"
+          ]
+        },
+        {
+          "aliasColors": {
+          },
+          "bars": false,
+          "datasource": null,
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": null,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 19,
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "aggregator": "none",
+              "alias": "warmupTime",
+              "app": "solr-core-app",
+              "downsampleAggregator": "avg",
+              "errors": {},
+              "metric": "solr.core.gauge.cache.searcher.queryResultCache.warmupTime",
               "precision": "default",
               "refId": "A",
               "seriesAggregator": "none",
@@ -1438,14 +1495,15 @@
         }
       ],
       "showTitle": true,
-      "title": "CACHES"
+      "title": "Caches"
     }
   ],
   "time": {
-    "from": "now-6h",
+    "from": "now-30m",
     "to": "now"
   },
   "timepicker": {
+    "now": true,
     "refresh_intervals": [
       "5s",
       "10s",
@@ -1516,7 +1574,8 @@
   "annotations": {
     "list": []
   },
+  "refresh": false,
   "schemaVersion": 8,
-  "version": 0,
+  "version": 20,
   "links": []
 }

@@ -1,10 +1,10 @@
 {
   "id": null,
-  "title": "Solr 6.5.0 - Hosts",
-  "originalTitle": "Solr 6.5.0 - Hosts",
+  "title": "Solr 6.6.1 - Hosts",
+  "originalTitle": "Solr 6.6.1 - Hosts",
   "tags": [
     "solr",
-    "solr-6.5.0"
+    "solr-6.6.1"
   ],
   "style": "dark",
   "timezone": "browser",
@@ -20,7 +20,7 @@
         {
           "content": "<h4 align=\"center\">Solr Hosts Dashboard</h4>",
           "editable": true,
-          "error": false
+          "error": false,
           "id": 3,
           "isNew": true,
           "links": [],
@@ -86,7 +86,7 @@
               "app": "solr-host-app",
               "downsampleAggregator": "avg",
               "errors": {},
-              "metric": "solr.jvm.jvm.os.processcpuload.value",
+              "metric": "solr.jvm.gauge.os.processCpuLoad",
               "precision": "default",
               "refId": "A",
               "seriesAggregator": "none",
@@ -157,7 +157,7 @@
               "app": "solr-host-app",
               "downsampleAggregator": "avg",
               "errors": {},
-              "metric": "solr.jvm.jvm.memory.total.used.value",
+              "metric": "solr.jvm.gauge.memory.total.used",
               "precision": "default",
               "refId": "A",
               "seriesAggregator": "none",

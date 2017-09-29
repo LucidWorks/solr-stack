@@ -77,39 +77,42 @@ solr_collection_config_dir = map_example_collection['solr_collection_sample_conf
 solr_collection_shards = str(map_example_collection['solr_collection_sample_shards'])
 solr_collection_replicas = str(map_example_collection['solr_collection_sample_replicas'])
 
+# Solr security
+security_enabled = config['configurations']['cluster-env']['security_enabled']
+kinit_path_local = get_kinit_path(default('/configurations/kerberos-env/executable_search_paths', None))
+
 # solr + HDFS
 map_solr_hdfs = config['configurations']['solr-hdfs']
 solr_hdfs_enable = bool(map_solr_hdfs['solr_hdfs_enable'])
 solr_hdfs_prefix = '#' if not solr_hdfs_enable else ''
-solr_hdfs_directory = map_solr_hdfs['solr_hdfs_directory']
-hadoop_bin_dir = stack_select.get_hadoop_dir('bin')
-hadoop_conf_dir = conf_select.get_hadoop_conf_dir()
-hdfs_user = config['configurations']['hadoop-env']['hdfs_user']
-hdfs_site = config['configurations']['hdfs-site']
-hdfs_user_keytab = config['configurations']['hadoop-env']['hdfs_user_keytab']
-default_fs = config['configurations']['core-site']['fs.defaultFS']
-dfs_type = default('/commandParams/dfs_type', '')
-security_enabled = config['configurations']['cluster-env']['security_enabled']
-kinit_path_local = get_kinit_path(
-    default('/configurations/kerberos-env/executable_search_paths', None))
-hdfs_principal_name = config['configurations']['hadoop-env']['hdfs_principal_name']
-solr_hdfs_delete_write_lock_files = bool(map_solr_hdfs['solr_hdfs_delete_write_lock_files'])
 
-HdfsResource = functools.partial(
-    HdfsResource,
-    user=hdfs_user,
-    hdfs_resource_ignore_file='/var/lib/ambari-agent/data/.hdfs_resource_ignore',
-    security_enabled=security_enabled,
-    keytab=hdfs_user_keytab,
-    kinit_path_local=kinit_path_local,
-    hadoop_bin_dir=hadoop_bin_dir,
-    hadoop_conf_dir=hadoop_conf_dir,
-    principal_name=hdfs_principal_name,
-    hdfs_site=hdfs_site,
-    default_fs=default_fs,
-    immutable_paths=get_not_managed_resources(),
-    dfs_type=dfs_type
-)
+if solr_hdfs_enable:
+    solr_hdfs_directory = map_solr_hdfs['solr_hdfs_directory']
+    hadoop_bin_dir = stack_select.get_hadoop_dir('bin')
+    hadoop_conf_dir = conf_select.get_hadoop_conf_dir()
+    hdfs_user = config['configurations']['hadoop-env']['hdfs_user']
+    hdfs_site = config['configurations']['hdfs-site']
+    hdfs_user_keytab = config['configurations']['hadoop-env']['hdfs_user_keytab']
+    default_fs = config['configurations']['core-site']['fs.defaultFS']
+    dfs_type = default('/commandParams/dfs_type', '')
+    hdfs_principal_name = config['configurations']['hadoop-env']['hdfs_principal_name']
+    solr_hdfs_delete_write_lock_files = bool(map_solr_hdfs['solr_hdfs_delete_write_lock_files'])
+
+    HdfsResource = functools.partial(
+        HdfsResource,
+        user=hdfs_user,
+        hdfs_resource_ignore_file='/var/lib/ambari-agent/data/.hdfs_resource_ignore',
+        security_enabled=security_enabled,
+        keytab=hdfs_user_keytab,
+        kinit_path_local=kinit_path_local,
+        hadoop_bin_dir=hadoop_bin_dir,
+        hadoop_conf_dir=hadoop_conf_dir,
+        principal_name=hdfs_principal_name,
+        hdfs_site=hdfs_site,
+        default_fs=default_fs,
+        immutable_paths=get_not_managed_resources(),
+        dfs_type=dfs_type
+    )
 
 # solr + SSL
 map_solr_ssl = config['configurations']['solr-ssl']
@@ -189,14 +192,16 @@ solr_enable_metrics = bool(solr_metrics.get('solr_enable_metrics', False))
 solr_metrics_delay = solr_metrics['solr_metrics_delay']
 solr_metrics_period = solr_metrics['solr_metrics_period']
 
-solr_core_metrics = bool(solr_metrics['solr_core_metrics'])
-solr_jetty_metrics = bool(solr_metrics['solr_jetty_metrics'])
-solr_jvm_metrics = bool(solr_metrics['solr_jvm_metrics'])
-solr_node_metrics = bool(solr_metrics['solr_node_metrics'])
+solr_core_metrics = bool(solr_metrics.get('solr_core_metrics', False))
+solr_jetty_metrics = bool(solr_metrics.get('solr_jetty_metrics', False))
+solr_jvm_metrics = bool(solr_metrics.get('solr_jvm_metrics', False))
+solr_node_metrics = bool(solr_metrics.get('solr_node_metrics', False))
 
 
 solr_metrics_config_conf_dir = solr_metrics['solr_metrics_config_conf_dir']
 solr_metrics_config_pid_dir = solr_metrics['solr_metrics_config_pid_dir']
 solr_metrics_config_log_dir = solr_metrics['solr_metrics_config_log_dir']
+
+solr_metrics_diagnostic_mode = solr_metrics['solr_metrics_diagnostic_mode']
 
 solr_metrics_properties = solr_metrics['solr_metrics_properties']

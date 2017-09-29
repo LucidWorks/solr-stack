@@ -29,7 +29,7 @@ AMS_METRICS_GET_URL = "/ws/v1/timeline/metrics?%s"
 CONNECTION_TIMEOUT_DEFAULT = 5.0
 CONNECTION_TIMEOUT_KEY = "connection.timeout"
 
-METRIC_NAMES_DEFAULT = "solr.jvm.jvm.memory.total.used.value,solr.jvm.jvm.memory.total.max.value"
+METRIC_NAMES_DEFAULT = "solr.jvm.gauge.memory.total.used,solr.jvm.gauge.memory.total.max"
 METRIC_NAMES_KEY = "metric.names"
 
 APP_ID_DEFAULT = "solr-host-app"

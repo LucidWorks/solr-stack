@@ -76,25 +76,28 @@ solr_collection_config_dir = map_example_collection['solr_collection_sample_conf
 solr_collection_shards = str(map_example_collection['solr_collection_sample_shards'])
 solr_collection_replicas = str(map_example_collection['solr_collection_sample_replicas'])
 
+# Solr security
+security_enabled = config['configurations']['cluster-env']['security_enabled']
+kinit_path_local = get_kinit_path(default('/configurations/kerberos-env/executable_search_paths', None))
+
 # solr + HDFS
 map_solr_hdfs = config['configurations']['solr-hdfs']
 solr_hdfs_enable = bool(map_solr_hdfs['solr_hdfs_enable'])
-solr_hdfs_prefix = '#' if not solr_hdfs_enable else ''
-solr_hdfs_directory = map_solr_hdfs['solr_hdfs_directory']
-hadoop_bin_dir = stack_select.get_hadoop_dir('bin')
-hadoop_conf_dir = conf_select.get_hadoop_conf_dir()
-hdfs_user = config['configurations']['hadoop-env']['hdfs_user']
-hdfs_site = config['configurations']['hdfs-site']
-hdfs_user_keytab = config['configurations']['hadoop-env']['hdfs_user_keytab']
-default_fs = config['configurations']['core-site']['fs.defaultFS']
-dfs_type = default('/commandParams/dfs_type', '')
-security_enabled = config['configurations']['cluster-env']['security_enabled']
-kinit_path_local = get_kinit_path(
-        default('/configurations/kerberos-env/executable_search_paths', None))
-hdfs_principal_name = config['configurations']['hadoop-env']['hdfs_principal_name']
-solr_hdfs_delete_write_lock_files = bool(map_solr_hdfs['solr_hdfs_delete_write_lock_files'])
 
-HdfsResource = functools.partial(
+if solr_hdfs_enable:
+    solr_hdfs_prefix = '#' if not solr_hdfs_enable else ''
+    solr_hdfs_directory = map_solr_hdfs['solr_hdfs_directory']
+    hadoop_bin_dir = stack_select.get_hadoop_dir('bin')
+    hadoop_conf_dir = conf_select.get_hadoop_conf_dir()
+    hdfs_user = config['configurations']['hadoop-env']['hdfs_user']
+    hdfs_site = config['configurations']['hdfs-site']
+    hdfs_user_keytab = config['configurations']['hadoop-env']['hdfs_user_keytab']
+    default_fs = config['configurations']['core-site']['fs.defaultFS']
+    dfs_type = default('/commandParams/dfs_type', '')
+    hdfs_principal_name = config['configurations']['hadoop-env']['hdfs_principal_name']
+    solr_hdfs_delete_write_lock_files = bool(map_solr_hdfs['solr_hdfs_delete_write_lock_files'])
+
+    HdfsResource = functools.partial(
         HdfsResource,
         user=hdfs_user,
         hdfs_resource_ignore_file='/var/lib/ambari-agent/data/.hdfs_resource_ignore',
@@ -108,7 +111,7 @@ HdfsResource = functools.partial(
         default_fs=default_fs,
         immutable_paths=get_not_managed_resources(),
         dfs_type=dfs_type
-)
+    )
 
 # solr + SSL
 map_solr_ssl = config['configurations']['solr-ssl']

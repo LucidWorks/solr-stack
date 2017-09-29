@@ -110,6 +110,16 @@
     </property>
 
     <property>
+        <name>solr_metrics_diagnostic_mode</name>
+        <value>false</value>
+        <description>Enable diagnostic mode</description>
+        <display-name>Diagnostic mode</display-name>
+        <value-attributes>
+            <type>boolean</type>
+        </value-attributes>
+    </property>
+
+    <property>
         <name>solr_metrics_properties</name>
         <description>This is the jinja template for solr.metrics.properties file</description>
         <value>
@@ -142,6 +152,8 @@
             solr.host={{solr_protocol}}://{{hostname}}:{{solr_config_port}}/solr
             solr.retry.exponential.wait=3
             solr.retry.stop.after.delay=2
+
+            diagnostic.mode = {{solr_metrics_diagnostic_mode}}
         </value>
         <value-attributes>
             <type>content</type>

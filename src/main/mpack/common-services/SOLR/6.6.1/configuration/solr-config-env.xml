@@ -24,13 +24,13 @@
         <description>This is a template for the solr.in.sh file</description>
         <value>
             # Licensed to the Apache Software Foundation (ASF) under one or more
-            # contributor license agreements. See the NOTICE file distributed with
+            # contributor license agreements.  See the NOTICE file distributed with
             # this work for additional information regarding copyright ownership.
             # The ASF licenses this file to You under the Apache License, Version 2.0
             # (the "License"); you may not use this file except in compliance with
-            # the License. You may obtain a copy of the License at
+            # the License.  You may obtain a copy of the License at
             #
-            # http://www.apache.org/licenses/LICENSE-2.0
+            #     http://www.apache.org/licenses/LICENSE-2.0
             #
             # Unless required by applicable law or agreed to in writing, software
             # distributed under the License is distributed on an "AS IS" BASIS,
@@ -38,7 +38,7 @@
             # See the License for the specific language governing permissions and
             # limitations under the License.
 
-            # Settings here will override settings in existing env vars or in bin/solr. The default shipped state
+            # Settings here will override settings in existing env vars or in bin/solr.  The default shipped state
             # of this file is completely commented.
 
             # By default the script will use JAVA_HOME to determine which java
@@ -47,8 +47,8 @@
             SOLR_JAVA_HOME={{java64_home}}
 
             # This controls the number of seconds that the solr script will wait for
-            # Solr to stop gracefully or Solr to start. If the graceful stop fails,
-            # the script will forcibly stop Solr. If the start fails, the script will
+            # Solr to stop gracefully or Solr to start.  If the graceful stop fails,
+            # the script will forcibly stop Solr.  If the start fails, the script will
             # give up waiting and display the last few lines of the logfile.
             SOLR_STOP_WAIT="{{solr_stop_wait}}"
 
@@ -59,27 +59,18 @@
             # Comment out SOLR_HEAP if you are using this though, that takes precedence
             #SOLR_JAVA_MEM="-Xms512m -Xmx512m"
 
-            # Enable verbose GC logging
-            GC_LOG_OPTS="-verbose:gc -XX:+PrintHeapAtGC -XX:+PrintGCDetails \
-            -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+PrintTenuringDistribution \
-            -XX:+PrintGCApplicationStoppedTime"
+            # Enable verbose GC logging...
+            #  * If this is unset, various default options will be selected depending on which JVM version is in use
+            #  * For Java 8: if this is set, additional params will be added to specify the log file and rotation
+            #  * For Java 9 or higher: each included opt param that starts with '-Xlog:gc', but does not include an
+            #    output specifier, will have a 'file' output specifier (as well as formatting and rollover options)
+            #    appended, using the effective value of the SOLR_LOGS_DIR.
+            #
+            #GC_LOG_OPTS='-Xlog:gc*'  # (Java 9+)
+            #GC_LOG_OPTS="-verbose:gc -XX:+PrintHeapAtGC -XX:+PrintGCDetails \
+            #  -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+PrintTenuringDistribution -XX:+PrintGCApplicationStoppedTime"
 
             # These GC settings have shown to work well for a number of common Solr workloads
-            GC_TUNE="-XX:NewRatio=3 \
-            -XX:SurvivorRatio=4 \
-            -XX:TargetSurvivorRatio=90 \
-            -XX:MaxTenuringThreshold=8 \
-            -XX:+UseConcMarkSweepGC \
-            -XX:+UseParNewGC \
-            -XX:ConcGCThreads=4 -XX:ParallelGCThreads=4 \
-            -XX:+CMSScavengeBeforeRemark \
-            -XX:PretenureSizeThreshold=64m \
-            -XX:+UseCMSInitiatingOccupancyOnly \
-            -XX:CMSInitiatingOccupancyFraction=50 \
-            -XX:CMSMaxAbortablePrecleanTime=6000 \
-            -XX:+CMSParallelRemarkEnabled \
-            -XX:+ParallelRefProcEnabled"
-
             {{solr_hdfs_prefix}}GC_TUNE="$GC_TUNE -XX:MaxDirectMemorySize=20g -XX:+UseLargePages"
 
             # Set the ZooKeeper connection string if using an external ZooKeeper ensemble
@@ -147,6 +138,11 @@
             # Location where Solr should write logs to. Absolute or relative to solr start dir
             SOLR_LOGS_DIR={{solr_config_log_dir}}
 
+            # Enables log rotation, cleanup, and archiving during start. Setting SOLR_LOG_PRESTART_ROTATION=false will skip start
+            # time rotation of logs, and the archiving of the last GC and console log files. It does not affect Log4j configuration.
+            # This pre-startup rotation may need to be disabled depending how much you customize the default logging setup.
+            #SOLR_LOG_PRESTART_ROTATION=true
+
             # Sets the port Solr binds to, default is 8983
             SOLR_PORT={{solr_config_port}}
 
@@ -171,7 +167,8 @@
             #SOLR_SSL_CLIENT_TRUST_STORE_TYPE=
 
             # Settings for authentication
-            {{solr_kerberos_prefix}}SOLR_AUTHENTICATION_CLIENT_CONFIGURER=org.apache.solr.client.solrj.impl.Krb5HttpClientConfigurer
+            # Please configure only one of SOLR_AUTHENTICATION_CLIENT_CONFIGURER or SOLR_AUTH_TYPE parameters
+            {{solr_kerberos_prefix}}SOLR_AUTH_TYPE="kerberos"
             {{solr_kerberos_prefix}}SOLR_AUTHENTICATION_OPTS="-Djava.security.auth.login.config={{solr_kerberos_jaas_config}} \
             {{solr_kerberos_prefix}}-Dsolr.kerberos.cookie.domain={{solr_kerberos_cookie_domain}} \
             {{solr_kerberos_prefix}}-Dsolr.kerberos.cookie.portaware=true \
@@ -180,9 +177,9 @@
 
             # Settings for ZK ACL
             #SOLR_ZK_CREDS_AND_ACLS="-DzkACLProvider=org.apache.solr.common.cloud.VMParamsAllAndReadonlyDigestZkACLProvider \
-            #-DzkCredentialsProvider=org.apache.solr.common.cloud.VMParamsSingleSetCredentialsDigestZkCredentialsProvider \
-            # -DzkDigestUsername=admin-user -DzkDigestPassword=CHANGEME-ADMIN-PASSWORD \
-            # -DzkDigestReadonlyUsername=readonly-user -DzkDigestReadonlyPassword=CHANGEME-READONLY-PASSWORD"
+            #  -DzkCredentialsProvider=org.apache.solr.common.cloud.VMParamsSingleSetCredentialsDigestZkCredentialsProvider \
+            #  -DzkDigestUsername=admin-user -DzkDigestPassword=CHANGEME-ADMIN-PASSWORD \
+            #  -DzkDigestReadonlyUsername=readonly-user -DzkDigestReadonlyPassword=CHANGEME-READONLY-PASSWORD"
             #SOLR_OPTS="$SOLR_OPTS $SOLR_ZK_CREDS_AND_ACLS"
         </value>
         <value-attributes>
