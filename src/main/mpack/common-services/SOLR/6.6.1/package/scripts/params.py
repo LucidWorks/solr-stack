@@ -202,6 +202,5 @@ solr_metrics_config_conf_dir = solr_metrics['solr_metrics_config_conf_dir']
 solr_metrics_config_pid_dir = solr_metrics['solr_metrics_config_pid_dir']
 solr_metrics_config_log_dir = solr_metrics['solr_metrics_config_log_dir']
 
-solr_metrics_diagnostic_mode = solr_metrics['solr_metrics_diagnostic_mode']
-
 solr_metrics_properties = solr_metrics['solr_metrics_properties']
+solr_metrics_log4j2 = solr_metrics['solr_metrics_log4j2']

@@ -57,7 +57,7 @@
             },
             {
               "name": "metric.names",
-              "value": "solr.jvm.jvm.os.processcpuload.value",
+              "value": "solr.jvm.gauge.os.processCpuLoad",
               "type": "STRING",
               "visibility": "HIDDEN"
             },
@@ -107,7 +107,7 @@
             },
             {
               "name": "metric.names",
-              "value": "solr.jvm.jvm.memory.total.used.value,solr.jvm.jvm.memory.total.max.value",
+              "value": "solr.jvm.gauge.memory.total.used,solr.jvm.gauge.memory.total.max",
               "type": "STRING",
               "visibility": "HIDDEN"
             },

@@ -26,8 +26,8 @@ def setup_solr_metrics_support():
     )
 
     File(
-            format("{solr_metrics_config_conf_dir}/log4j2.xml"),
-            content=Template("log4j2.xml"),
+            format("{solr_metrics_config_conf_dir}/log4j2.json"),
+            content=InlineTemplate(params.solr_metrics_log4j2),
             owner=params.solr_config_user
     )
 

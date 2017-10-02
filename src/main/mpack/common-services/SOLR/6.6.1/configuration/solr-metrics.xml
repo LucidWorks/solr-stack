@@ -110,16 +110,6 @@
     </property>
 
     <property>
-        <name>solr_metrics_diagnostic_mode</name>
-        <value>false</value>
-        <description>Enable diagnostic mode</description>
-        <display-name>Diagnostic mode</display-name>
-        <value-attributes>
-            <type>boolean</type>
-        </value-attributes>
-    </property>
-
-    <property>
         <name>solr_metrics_properties</name>
         <description>This is the jinja template for solr.metrics.properties file</description>
         <value>
@@ -152,8 +142,84 @@
             solr.host={{solr_protocol}}://{{hostname}}:{{solr_config_port}}/solr
             solr.retry.exponential.wait=3
             solr.retry.stop.after.delay=2
+        </value>
+        <value-attributes>
+            <type>content</type>
+        </value-attributes>
+    </property>
 
-            diagnostic.mode = {{solr_metrics_diagnostic_mode}}
+    <property>
+        <name>solr_metrics_log4j2</name>
+        <description>This is the jinja template for log4j2.json file</description>
+        <value>
+        {
+          "configuration": {
+            "name": "Default",
+            "properties": {
+              "property": [
+                {
+                  "name": "directory",
+                  "value": "{{solr_metrics_config_log_dir}}"
+                },
+                {
+                  "name": "log_name",
+                  "value": "solr-metrics"
+                }
+              ]
+            },
+            "appenders": {
+              "RollingFile": {
+                "name": "file",
+                "fileName": "${directory}/${log_name}.log",
+                "filePattern": "${directory}/${log_name}.%d{yyyy-MM-dd}-%i.log.gz",
+                "PatternLayout": {
+                  "pattern": "%d{ISO8601} - %-5p [%t:%C{1}@%L] - %X - %m%n"
+                },
+                "Policies": {
+                  "TimeBasedTriggeringPolicy": {
+                  },
+                  "SizeBasedTriggeringPolicy": {
+                    "size": "100MB"
+                  }
+                },
+                "DefaultRolloverStrategy": {
+                  "delete": {
+                    "basePath": "${directory}",
+                    "maxDepth": 1,
+                    "ifFileName": {
+                      "glob": "${log_name}*.log.gz",
+                      "ifAny": {
+                        "ifLastModified": {
+                          "age": "30d"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "loggers": {
+              "logger": [
+                {
+                  "name": "com.lucidworks.ambari",
+                  "level": "INFO"
+                },
+                {
+                  "name": "org.apache.zookeeper",
+                  "level": "WARN"
+                }
+              ],
+              "root": {
+                "level": "INFO",
+                "appender-ref": [
+                  {
+                    "ref": "file"
+                  }
+                ]
+              }
+            }
+          }
+        }
         </value>
         <value-attributes>
             <type>content</type>
