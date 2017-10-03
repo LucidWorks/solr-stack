@@ -79,43 +79,44 @@ def execute(configurations={}, parameters={}, host_name=None):
     if CRITICAL_THRESHOLD_KEY in parameters:
         critical_threshold = parameters[CRITICAL_THRESHOLD_KEY]
 
-    current_time = int(time.time()) * 1000
-    metric_period = int(configurations[SOLR_METRICS_PERIOD])
-    start_time = current_time - (metric_period * 2)
-
     get_metrics_parameters = {
         "metricNames": metric_name,
         "appId": app_id,
         "hostname": host_name,
-        "startTime": start_time,
-        "endTime": current_time,
         "grouped": "true",
     }
 
     encoded_get_metrics_parameters = urllib.urlencode(get_metrics_parameters)
 
     try:
-        conn = httplib.HTTPConnection(collector_host, int(collector_port), timeout=connection_timeout)
+        conn = httplib.HTTPConnection(collector_host, int(collector_port), timeout=float(connection_timeout))
         conn.request("GET", AMS_METRICS_GET_URL % encoded_get_metrics_parameters)
         response = conn.getresponse()
         data = response.read()
         conn.close()
-    except Exception:
-        return RESULT_STATE_UNKNOWN, ["Unable to retrieve metrics from the Ambari Metrics service."]
+    except Exception as e:
+        message = "Unable to retrieve metrics from the Ambari Metrics service. Error: {}".format(str(e))
+        return RESULT_STATE_UNKNOWN, [message]
 
     data_json = json.loads(data)
-    cpu_load_value = -1
+    timestamp = -1
 
     for metrics_data in data_json["metrics"]:
-        if "solr.jvm.jvm.os.processcpuload.value" in metrics_data["metricname"]:
+        if metric_name in metrics_data["metricname"]:
             metrics = metrics_data["metrics"].values()
-            if len(metrics) > 0:
-                cpu_load_value = metrics[0] * 100
-                break
+            timestamp = metrics_data["timestamp"]
 
-    if int(cpu_load_value) == -1:
+    if int(timestamp) == -1:
         return RESULT_STATE_UNKNOWN, ["There is not enough data"]
 
+    current_time = int(time.time()) * 1000
+    metric_period_ms = 10 * 1000 * 60
+    difference = current_time - timestamp
+
+    if difference > metric_period_ms:
+        return RESULT_STATE_WARNING, ["Data retrieved is older than 10 minutes, please check the Solr node"]
+
+    cpu_load_value = metrics[0] * 100
     response = 'CPU load {0:.2f} %'.format(cpu_load_value)
 
     if int(cpu_load_value) >= warning_threshold and int(cpu_load_value) < critical_threshold:

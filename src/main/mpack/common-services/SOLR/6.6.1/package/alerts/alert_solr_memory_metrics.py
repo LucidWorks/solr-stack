@@ -78,50 +78,66 @@ def execute(configurations={}, parameters={}, host_name=None):
     if CRITICAL_THRESHOLD_KEY in parameters:
         critical_threshold = parameters[CRITICAL_THRESHOLD_KEY]
 
-    current_time = int(time.time()) * 1000
-    metric_period = int(configurations[SOLR_METRICS_PERIOD])
-    start_time = current_time - (metric_period * 2)
-
     get_metrics_parameters = {
         "metricNames": metric_name,
         "appId": app_id,
         "hostname": host_name,
-        "startTime": start_time,
-        "endTime": current_time,
         "grouped": "true",
     }
 
     encoded_get_metrics_parameters = urllib.urlencode(get_metrics_parameters)
 
     try:
-        conn = httplib.HTTPConnection(collector_host, int(collector_port), timeout=connection_timeout)
+        conn = httplib.HTTPConnection(collector_host, int(collector_port), timeout=float(connection_timeout))
         conn.request("GET", AMS_METRICS_GET_URL % encoded_get_metrics_parameters)
         response = conn.getresponse()
         data = response.read()
         conn.close()
-    except Exception:
-        return RESULT_STATE_UNKNOWN, ["Unable to retrieve metrics from the Ambari Metrics service."]
+    except Exception as e:
+        message = "Unable to retrieve metrics from the Ambari Metrics service. Error: {}".format(str(e))
+        return RESULT_STATE_UNKNOWN, [message]
 
     data_json = json.loads(data)
 
-    memory_max = -1
-    memory_used = -1
+    split = metric_name.split(",")
+    metric_name_map = {
+        "used" if ("used" in split[0]) else "max": split[0],
+        "used" if ("used" in split[1]) else "max": split[1]
+    }
+
+    timestamp = -1
+    metrics = {}
 
     for metrics_data in data_json["metrics"]:
-        if "solr.jvm.jvm.memory.total.used.value" in metrics_data["metricname"]:
-            metrics = metrics_data["metrics"].values()
-            if len(metrics) > 0:
-                memory_max = metrics[0] / (1024 * 1024)
+        if metric_name_map["used"] in metrics_data["metricname"]:
+            metrics["used"] = metrics_data["metrics"].values()[0]
+            current_timestamp = metrics_data["timestamp"]
+            if timestamp == -1:
+                timestamp = current_timestamp
+            elif timestamp > current_timestamp:
+                timestamp = current_timestamp
                 continue
-        if "solr.jvm.jvm.memory.total.max.value" in metrics_data["metricname"]:
-            metrics = metrics_data["metrics"].values()
-            if len(metrics) > 0:
-                memory_used = metrics[0] / (1024 * 1024)
+        if metric_name_map["max"] in metrics_data["metricname"]:
+            metrics["max"] = metrics_data["metrics"].values()[0]
+            current_timestamp = metrics_data["timestamp"]
+            if timestamp == -1:
+                timestamp = current_timestamp
+            elif timestamp > current_timestamp:
+                timestamp = current_timestamp
                 continue
 
-    if int(memory_max) == -1 or int(memory_used) == -1:
-        return RESULT_STATE_UNKNOWN, ["There is not enough data to compare"]
+    if int(timestamp) == -1:
+        return RESULT_STATE_UNKNOWN, ["There is not enough data"]
 
+    current_time = int(time.time()) * 1000
+    metric_period_ms = 10 * 1000 * 60
+    difference = current_time - timestamp
+
+    if difference > metric_period_ms:
+        return RESULT_STATE_WARNING, ["Data retrieved is older than 10 minutes, please check the Solr node"]
+
+    memory_used = metrics["used"] / (1024 * 1024)
+    memory_max = metrics["max"] / (1024 * 1024)
     memory_value = memory_used / memory_max
     response = 'Memory usage is {0:.2f} %'.format(memory_value)
 
