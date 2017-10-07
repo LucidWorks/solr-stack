@@ -55,31 +55,22 @@
 
     <property>
         <name>solr_metrics_config_conf_dir</name>
-        <value>/opt/lucidworks-hdpsearch/metrics/conf</value>
+        <value>{solr_package_dir}/metrics/conf</value>
         <description>Solr Metrics conf directory</description>
-        <value-attributes>
-            <type>directory</type>
-        </value-attributes>
         <display-name>Solr Metrics configuration directory</display-name>
     </property>
 
     <property>
         <name>solr_metrics_config_pid_dir</name>
-        <value>/opt/lucidworks-hdpsearch/metrics/var</value>
+        <value>{solr_package_dir}/metrics/var</value>
         <description>Solr Metrics PID directory</description>
-        <value-attributes>
-            <type>directory</type>
-        </value-attributes>
         <display-name>Solr Metrics PID directory</display-name>
     </property>
 
     <property>
         <name>solr_metrics_config_log_dir</name>
-        <value>/opt/lucidworks-hdpsearch/metrics/log</value>
+        <value>{solr_package_dir}/metrics/log</value>
         <description>Solr Metrics log directory</description>
-        <value-attributes>
-            <type>directory</type>
-        </value-attributes>
         <display-name>Solr Metrics log directory</display-name>
     </property>
 

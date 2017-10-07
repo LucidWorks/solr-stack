@@ -28,6 +28,7 @@ def build_zookeeper_hosts():
 
 config = Script.get_config()
 
+version = '{VERSION}'
 java64_home = config['hostLevelParams']['java_home']
 hostname = config['hostname']
 zk_client_port = str(default('/configurations/zoo.cfg/clientPort', None))
@@ -51,7 +52,7 @@ solr_hostname = hostname
 
 log4j_properties = config['configurations']['solr-log4j']['content']
 
-solr_package_dir = '/opt/lucidworks-hdpsearch'
+solr_package_dir = format('/opt/lucidworks-hdpsearch-{version}')
 solr_config_dir = format('{solr_package_dir}/solr')
 solr_config_bin_dir = format('{solr_config_dir}/bin')
 solr_config_pid_dir = status_params.solr_config_pid_dir
@@ -61,7 +62,7 @@ solr_webapp_dir = format('{solr_config_dir}/server/solr-webapp')
 # solr cloud
 cloud_scripts = format('{solr_config_dir}/server/scripts/cloud-scripts')
 map_solr_cloud = config['configurations']['solr-cloud']
-solr_cloud_mode = map_solr_cloud['solr_cloud_enable']
+solr_cloud_mode = bool(map_solr_cloud['solr_cloud_enable'])
 solr_cloud_mode_prefix = '#' if not solr_cloud_mode else ''
 solr_not_cloud_mode_prefix = '#' if solr_cloud_mode else ''
 solr_cloud_zk_directory = map_solr_cloud['solr_cloud_zk_directory']
@@ -187,20 +188,20 @@ if has_metric_collector:
         "/configurations/ams-ssl-client/ssl.client.truststore.password", "")
 
 solr_metrics = config['configurations']['solr-metrics']
-solr_enable_metrics = bool(solr_metrics.get('solr_enable_metrics', False))
+solr_enable_metrics = bool(solr_metrics['solr_enable_metrics'])
 
 solr_metrics_delay = solr_metrics['solr_metrics_delay']
 solr_metrics_period = solr_metrics['solr_metrics_period']
 
-solr_core_metrics = bool(solr_metrics.get('solr_core_metrics', False))
-solr_jetty_metrics = bool(solr_metrics.get('solr_jetty_metrics', False))
-solr_jvm_metrics = bool(solr_metrics.get('solr_jvm_metrics', False))
-solr_node_metrics = bool(solr_metrics.get('solr_node_metrics', False))
+solr_core_metrics = bool(solr_metrics['solr_core_metrics'])
+solr_jetty_metrics = bool(solr_metrics['solr_jetty_metrics'])
+solr_jvm_metrics = bool(solr_metrics['solr_jvm_metrics'])
+solr_node_metrics = bool(solr_metrics['solr_node_metrics'])
 
 
-solr_metrics_config_conf_dir = solr_metrics['solr_metrics_config_conf_dir']
-solr_metrics_config_pid_dir = solr_metrics['solr_metrics_config_pid_dir']
-solr_metrics_config_log_dir = solr_metrics['solr_metrics_config_log_dir']
+solr_metrics_config_conf_dir = format(solr_metrics['solr_metrics_config_conf_dir'])
+solr_metrics_config_pid_dir = format(solr_metrics['solr_metrics_config_pid_dir'])
+solr_metrics_config_log_dir = format(solr_metrics['solr_metrics_config_log_dir'])
 
 solr_metrics_properties = solr_metrics['solr_metrics_properties']
 solr_metrics_log4j2 = solr_metrics['solr_metrics_log4j2']

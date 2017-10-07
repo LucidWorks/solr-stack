@@ -5,6 +5,7 @@ import time
 
 from ambari_commons.ambari_metrics_helper import select_metric_collector_hosts_from_hostnames
 from ambari_commons.ambari_metrics_helper import load_properties_from_file
+from resource_management.libraries.functions.format import format
 
 RESULT_STATE_OK = 'OK'
 RESULT_STATE_CRITICAL = 'CRITICAL'
@@ -134,7 +135,9 @@ def execute(configurations={}, parameters={}, host_name=None):
     difference = current_time - timestamp
 
     if difference > metric_period_ms:
-        return RESULT_STATE_WARNING, ["Data retrieved is older than 10 minutes, please check the Solr node"]
+        message = "Data retrieved is older than 10 minutes, please check the Solr node, and confirm that the Solr " \
+                  "ambari metrics is running"
+        return RESULT_STATE_WARNING, [message]
 
     memory_used = metrics["used"] / (1024 * 1024)
     memory_max = metrics["max"] / (1024 * 1024)
@@ -151,7 +154,10 @@ def execute(configurations={}, parameters={}, host_name=None):
 
 
 def get_collector_config(configurations):
-    solr_metrics_props = "{0}/{1}".format(configurations[SOLR_METRICS_CONF_DIR], "solr.metrics.properties")
+    version = '{VERSION}'
+    solr_package_dir = format('/opt/lucidworks-hdpsearch-{version}')
+    solr_metrics_config_conf_dir = format(configurations[SOLR_METRICS_CONF_DIR])
+    solr_metrics_props = "{0}/{1}".format(solr_metrics_config_conf_dir, "solr.metrics.properties")
     props = load_properties_from_file(solr_metrics_props)
     collector_hosts = props.get("collector.hosts")
 

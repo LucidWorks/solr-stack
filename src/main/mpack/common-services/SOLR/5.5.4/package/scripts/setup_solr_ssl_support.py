@@ -6,6 +6,9 @@ from resource_management.libraries.functions.format import format
 def setup_solr_ssl_support():
     import params
 
+    if not params.solr_cloud_mode:
+        return
+
     Execute(
             format(
                     '{zk_client_prefix}{solr_cloud_zk_directory} -cmd clusterprop -name urlScheme -val https'
@@ -18,6 +21,9 @@ def setup_solr_ssl_support():
 
 def remove_solr_ssl_support():
     import params
+
+    if not params.solr_cloud_mode:
+        return
 
     code, output = call(
             format(
