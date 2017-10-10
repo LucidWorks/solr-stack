@@ -186,4 +186,17 @@
             <type>content</type>
         </value-attributes>
     </property>
+
+
+    <property>
+        <name>solr_xml_template</name>
+        <display-name>solr.xml template</display-name>
+        <description>This is a template for the solr.xml file</description>
+        <value/>
+        <property-type>VALUE_FROM_PROPERTY_FILE</property-type>
+        <value-attributes>
+          <property-file-name>solr.xml.j2</property-file-name>
+          <property-file-type>xml</property-file-type>
+        </value-attributes>
+    </property>
 </configuration>

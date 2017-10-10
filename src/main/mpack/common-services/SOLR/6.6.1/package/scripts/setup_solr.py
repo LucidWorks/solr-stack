@@ -41,6 +41,6 @@ def setup_solr():
 
     File(
             format("{solr_config_data_dir}/solr.xml"),
-            content=Template("solr.xml.j2"),
+            content=InlineTemplate(params.solr_xml_template),
             owner=params.solr_config_user
     )

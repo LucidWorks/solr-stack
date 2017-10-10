@@ -46,6 +46,7 @@ solr_config_service_log_file = format('{solr_config_service_log_dir}/solr-servic
 solr_config_conf_dir = map_solr_config['solr_config_conf_dir']
 solr_config_data_dir = map_solr_config['solr_config_data_dir']
 solr_config_in_sh = map_solr_config['solr_in_sh_template']
+solr_xml_template = map_solr_config['solr_xml_template']
 solr_stop_wait = map_solr_config['solr_stop_wait']
 solr_hostname = hostname
 
