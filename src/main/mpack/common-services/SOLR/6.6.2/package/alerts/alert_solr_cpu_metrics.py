@@ -132,8 +132,7 @@ def execute(configurations={}, parameters={}, host_name=None):
 
 
 def get_collector_config(configurations):
-    version = '{VERSION}'
-    solr_package_dir = format('/opt/lucidworks-hdpsearch-{version}')
+    solr_package_dir = format('/opt/lucidworks-hdpsearch')
     solr_metrics_config_conf_dir = format(configurations[SOLR_METRICS_CONF_DIR])
     solr_metrics_props = "{0}/{1}".format(solr_metrics_config_conf_dir, "solr.metrics.properties")
     props = load_properties_from_file(solr_metrics_props)

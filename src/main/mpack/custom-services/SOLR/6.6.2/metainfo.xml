@@ -19,7 +19,7 @@
         <service>
             <name>SOLR</name>
             <version>6.6.1</version>
-            <extends>common-services/SOLR/6.6.1</extends>
+            <extends>common-services/SOLR/6.6.2</extends>
         </service>
     </services>
 </metainfo>

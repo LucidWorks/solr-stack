@@ -1,8 +1,11 @@
 {
   "id": null,
-  "title": "Solr 6.6.1 - Cores",
-  "originalTitle": "Solr 6.6.1 - Cores",
-  "tags": ["solr-6.6.1", "solr"],
+  "title": "Solr 6.6.2 - Cores",
+  "originalTitle": "Solr 6.6.2 - Cores",
+  "tags": [
+    "solr-6.6.2",
+    "solr"
+  ],
   "style": "dark",
   "timezone": "browser",
   "editable": true,

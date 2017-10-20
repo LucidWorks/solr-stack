@@ -28,7 +28,6 @@ def build_zookeeper_hosts():
 
 config = Script.get_config()
 
-version = '{VERSION}'
 java64_home = config['hostLevelParams']['java_home']
 hostname = config['hostname']
 zk_client_port = str(default('/configurations/zoo.cfg/clientPort', None))
@@ -53,7 +52,7 @@ solr_hostname = hostname
 
 log4j_properties = config['configurations']['solr-log4j']['content']
 
-solr_package_dir = format('/opt/lucidworks-hdpsearch-{version}')
+solr_package_dir = '/opt/lucidworks-hdpsearch'
 solr_config_dir = format('{solr_package_dir}/solr')
 solr_config_bin_dir = format('{solr_config_dir}/bin')
 solr_config_pid_dir = status_params.solr_config_pid_dir

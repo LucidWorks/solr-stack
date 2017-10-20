@@ -40,7 +40,7 @@
         "scope": "ANY",
         "source": {
           "type": "SCRIPT",
-          "path": "SOLR/6.6.1/package/alerts/alert_solr_cpu_metrics.py",
+          "path": "SOLR/6.6.2/package/alerts/alert_solr_cpu_metrics.py",
           "parameters": [
             {
               "name": "connection.timeout",
@@ -90,7 +90,7 @@
         "scope": "ANY",
         "source": {
           "type": "SCRIPT",
-          "path": "SOLR/6.6.1/package/alerts/alert_solr_memory_metrics.py",
+          "path": "SOLR/6.6.2/package/alerts/alert_solr_memory_metrics.py",
           "parameters": [
             {
               "name": "connection.timeout",

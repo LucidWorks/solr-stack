@@ -15,10 +15,7 @@ ext.src = 'src/main/mpack/'
 ext.mpack = 'mpack.json'
 ext.repostemplate = 'src/main/template/repos/repoinfo.xml'
 ext.reposinfo554 = 'custom-services/SOLR/5.5.4/repos/'
-ext.reposinfo661 = 'custom-services/SOLR/6.6.1/repos/'
-ext.package661 = 'common-services/SOLR/6.6.1/package/'
-ext.scripts661 = package661 + 'scripts/'
-ext.alerts661 = package661 + 'alerts/'
+ext.reposinfo662 = 'custom-services/SOLR/6.6.2/repos/'
 
 distributions {
   main {
@@ -31,21 +28,6 @@ distributions {
         line.replace("{VERSION}", "${version}")
       }
 
-      into (scripts661) {
-        from { src + scripts661 + 'params.py' }
-        filter { line ->
-          line.replace("{VERSION}", "${version}")
-        }
-      }
-
-      into (alerts661) {
-        from { src + alerts661 + 'alert_solr_cpu_metrics.py' }
-        from { src + alerts661 + 'alert_solr_memory_metrics.py' }
-        filter { line ->
-          line.replace("{VERSION}", "${version}")
-        }
-      }
-
       into(reposinfo554) {
         from { repostemplate }
         filter { line ->
@@ -53,10 +35,10 @@ distributions {
         }
       }
 
-      into(reposinfo661) {
+      into(reposinfo662) {
         from { repostemplate }
         filter { line ->
-          line.replace("{REPOID}", "${repoid661}")
+          line.replace("{REPOID}", "${repoid662}")
         }
       }
     }
