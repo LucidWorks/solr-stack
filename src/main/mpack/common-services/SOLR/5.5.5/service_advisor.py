@@ -22,7 +22,7 @@ EXAMPLE_COLLECTION = "example-collection"
 PROPERTIES = "properties"
 
 
-class SOLR554ServiceAdvisor(service_advisor.ServiceAdvisor):
+class SOLR555ServiceAdvisor(service_advisor.ServiceAdvisor):
     def is_not_null_or_empty(self, property_value):
         if property_value is None:
             return self.getErrorItem("Value cannot be null or empty")

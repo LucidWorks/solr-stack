@@ -31,7 +31,7 @@
       "service_versions_map": [
         {
           "service_name" : "SOLR",
-          "service_version" : "5.5.4",
+          "service_version" : "5.5.5",
           "applicable_stacks" : [
             {
               "stack_name" : "HDP",
