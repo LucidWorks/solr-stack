@@ -39,12 +39,11 @@
         </repo>
     </os>
     <os family="suse12">
-    <repo>
-        <baseurl>http://public-repo-1.hortonworks.com/{REPOID}/repos/sles12</baseurl>
-        <repoid>{REPOID}</repoid>
-        <reponame>HDP-SOLR</reponame>
-    </repo>
-
+        <repo>
+            <baseurl>http://public-repo-1.hortonworks.com/{REPOID}/repos/sles12</baseurl>
+            <repoid>{REPOID}</repoid>
+            <reponame>HDP-SOLR</reponame>
+        </repo>
 </os>
     <os family="debian6">
         <repo>
