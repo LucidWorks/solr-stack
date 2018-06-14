@@ -55,3 +55,6 @@ distTar {
 
 task makePackage(dependsOn: [clean, distTar]) {
 }
+
+task dist(dependsOn: [clean, distTar]) {
+}

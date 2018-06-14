@@ -32,7 +32,9 @@
                     <osFamily>any</osFamily>
                     <packages>
                         <package>
-                            <name>lucidworks-hdpsearch</name>
+                          <package><name>wget</name></package>
+                          <package><name>tar</name></package>
+                          <package><name>lsof</name></package>
                         </package>
                     </packages>
                 </osSpecific>
@@ -40,7 +42,6 @@
 
             <requiredServices>
                 <service>ZOOKEEPER</service>
-                <service>HDFS</service>
             </requiredServices>
 
             <commandScript>

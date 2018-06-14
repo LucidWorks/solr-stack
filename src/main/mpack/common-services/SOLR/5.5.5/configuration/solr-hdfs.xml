@@ -4,7 +4,7 @@
 <configuration supports_final="false" supports_adding_forbidden="true">
     <property>
         <name>solr_hdfs_enable</name>
-        <value>true</value>
+        <value>false</value>
         <description>Enable support for Solr on HDFS</description>
         <display-name>Enable support for Solr on HDFS</display-name>
         <value-attributes>
