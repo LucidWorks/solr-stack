@@ -9,7 +9,7 @@ from resource_management.libraries.functions.format import format
 COLLECTION_PATTERN = "{solr_hdfs_directory}/[a-zA-Z0-9\._-]+"
 CORE_PATTERN = "{collection_path}\/core_node[0-9]+"
 WRITE_LOCK_PATTERN = "{0}/data/index/write.lock "
-HOSTNAME_VERIFIER_PATTERN = "{core_node_name}\":{{((?![^_]shard|core_node).)*\"node_name\":\"{solr_hostname}"
+HOSTNAME_VERIFIER_PATTERN = "{core_node_name}\":{{((?!\"shard|\"core_node).)*\"node_name\":\"{solr_hostname}"
 
 
 def solr_port_validation():
