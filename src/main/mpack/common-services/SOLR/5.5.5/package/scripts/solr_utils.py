@@ -9,7 +9,9 @@ from resource_management.libraries.functions.format import format
 COLLECTION_PATTERN = "{solr_hdfs_directory}/[a-zA-Z0-9\._-]+"
 CORE_PATTERN = "{collection_path}\/core_node[0-9]+"
 WRITE_LOCK_PATTERN = "{0}/data/index/write.lock "
-HOSTNAME_VERIFIER_PATTERN = "{core_node_name}\":{{((?![^_]shard|core_node).)*\"node_name\":\"{solr_hostname}"
+DYNAMIC_WRITE_LOCK_PATTERN = "{0}/write.lock "
+DYNAMIC_INDEX_PATTERN = "index=([^\s]*)"
+HOSTNAME_VERIFIER_PATTERN = "{core_node_name}\":{{((?!\"shard|\"core_node).)*\"node_name\":\"{solr_hostname}"
 
 
 def solr_port_validation():
@@ -100,7 +102,19 @@ def get_write_lock_files_solr_cloud(hadoop_prefix, collections):
             pattern = re.compile(format(HOSTNAME_VERIFIER_PATTERN), re.MULTILINE|re.DOTALL)
             core_on_hostname = re.search(pattern, zk_output)
             if core_on_hostname is not None:
+                # always add static index directory name to remove lock
                 write_locks_to_delete += WRITE_LOCK_PATTERN.format(core_path)
+                # check if index.properties file exists, then use dynamic index directory name
+                code_indexprop_exists, output_indexprop_exists = call(format('{hadoop_prefix} -test -e {core_path}/data/index.properties'))
+                if code_indexprop_exists == 0:
+                    code_index_name, output_index_name = call(format('{hadoop_prefix} -cat {core_path}/data/index.properties | grep \'index=\''))
+                    if code_index_name == 0 and len(output_index_name) > 0:
+                        pattern2 = re.compile(format(DYNAMIC_INDEX_PATTERN), re.MULTILINE|re.DOTALL)
+                        index_matcher = re.search(pattern2, output_index_name)
+                        if index_matcher is not None and len(index_matcher.groups()) > 0:
+                            index_dirname = index_matcher.group(1)
+                            index_directory_path = format('{core_path}/data/{index_dirname}')
+                            write_locks_to_delete += DYNAMIC_WRITE_LOCK_PATTERN.format(index_directory_path)
 
     return write_locks_to_delete
 
